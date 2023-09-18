@@ -228,5 +228,5 @@ The `setUp()` method will create a few test entries. After the test entries are 
 
 ![Project overview](./structure.png)
 
-## Acknowledgements
+## Acknowledgements  
 This tutorial is partly based on https://www.vogella.com/tutorials/JavaPersistenceAPI/article.html#example.

@@ -14,9 +14,10 @@ public class PopulateTestData {
         static final String PERSISTENCE_UNIT_NAME = "VotingApp";
 
         public static void main(String[] args) {
-            try (EntityManagerFactory factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
-                 EntityManager em = factory.createEntityManager()) {
+            EntityManagerFactory factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
+            EntityManager em = factory.createEntityManager();
 
+            try {
                 em.getTransaction().begin();
 
                 PopulateTestData.addUsers(em);
@@ -27,11 +28,22 @@ public class PopulateTestData {
                 PopulateTestData.addAnalytics(em);
 
                 em.getTransaction().commit();
+            } catch (Exception e) {
+                e.printStackTrace();
+                em.getTransaction().rollback(); // Rollback in case of an error
+            } finally {
+                em.close();
+                factory.close();
             }
         }
     }
 
+
     public static void addUsers(EntityManager em) {
+
+        UserDAO userDAO = new UserDAO();
+        userDAO.setEntityManager(em);
+
         User admin = new User();
         admin.setName("Andre Normann");
         admin.setEmail("andre.normann@hotmail.com");
@@ -64,12 +76,15 @@ public class PopulateTestData {
         user4.setLastLoginDate(new java.sql.Timestamp(System.currentTimeMillis()));
         user4.setIsAdmin(false);
 
-        em.persist(admin);
-        em.persist(user2);
-        em.persist(user3);
-        em.persist(user4);
+        userDAO.addUser(admin);
+        userDAO.addUser(user2);
+        userDAO.addUser(user3);
+        userDAO.addUser(user4);
     }
+
     public static void addPolls(EntityManager em) {
+        PollDAO pollDAO = new PollDAO();
+        pollDAO.setEntityManager(em);
 
         User admin = em.find(User.class, 1L);
         User user2 = em.find(User.class, 2L);
@@ -83,22 +98,24 @@ public class PopulateTestData {
         poll1.setIsPublic(true);
         poll1.setPollLink("https://pollapp.com/poll1");
         poll1.setPollCode("POLL001");
+        pollDAO.addPoll(poll1);
 
         Poll poll2 = new Poll();
-        poll2.setTitle("Skal du være med ut i helgen?");
-        poll2.setDescription("Et spørsmål om man har fri ov vil gå ut til helgen");
-        poll2.setCreatedBy(user2);
-        poll2.setStartDateTime(new Timestamp(System.currentTimeMillis()));
-        poll2.setEndDateTime(new Timestamp(System.currentTimeMillis() + 86400000));
-        poll2.setIsPublic(true);
-        poll2.setPollLink("https://pollapp.com/poll2");
-        poll2.setPollCode("POLL002");
-
-        em.persist(poll1);
-        em.persist(poll2);
+        poll1.setTitle("Er det for mye å gjøre i DAT250?");
+        poll1.setDescription("I DAT250 er det obligger hele tiden");
+        poll1.setCreatedBy(user2);
+        poll1.setStartDateTime(new Timestamp(System.currentTimeMillis()));
+        poll1.setEndDateTime(new Timestamp(System.currentTimeMillis() + 86400000));
+        poll1.setIsPublic(true);
+        poll1.setPollLink("https://pollapp.com/poll1");
+        poll1.setPollCode("POLL001");;
+        pollDAO.addPoll(poll2);
     }
 
     public static void addVotes(EntityManager em) {
+
+        VoteDAO voteDAO = new VoteDAO();
+        voteDAO.setEntityManager(em);
 
         User user2 = em.find(User.class, 2L);
         User user3 = em.find(User.class, 3L);
@@ -129,19 +146,19 @@ public class PopulateTestData {
         Vote vote5 = new Vote();
         vote5.setPoll(poll2);
         vote5.setUser(user3);
-        vote5.setChoice("Grenn");
+        vote5.setChoice("Green");
 
         Vote vote6 = new Vote();
         vote6.setPoll(poll2);
         vote6.setUser(user4);
         vote6.setChoice("Red");
 
-        em.persist(vote1);
-        em.persist(vote2);
-        em.persist(vote3);
-        em.persist(vote4);
-        em.persist(vote5);
-        em.persist(vote6);
+        voteDAO.addVote(vote1);
+        voteDAO.addVote(vote2);
+        voteDAO.addVote(vote3);
+        voteDAO.addVote(vote4);
+        voteDAO.addVote(vote5);
+        voteDAO.addVote(vote6);
     }
 
     public static void addIoTDevices(EntityManager em) {
