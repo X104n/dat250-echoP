@@ -1,4 +1,4 @@
-package VotingApp;
+package VotingApp.user;
 
 import jakarta.persistence.EntityManager;
 
