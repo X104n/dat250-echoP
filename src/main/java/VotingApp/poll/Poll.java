@@ -1,5 +1,7 @@
-package VotingApp;
+package VotingApp.poll;
 
+import VotingApp.user.User;
+import VotingApp.vote.Vote;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
