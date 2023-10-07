@@ -1,5 +1,7 @@
-package VotingApp;
+package VotingApp.vote;
 
+import VotingApp.poll.Poll;
+import VotingApp.user.User;
 import jakarta.persistence.EntityManager;
 
 import java.util.List;

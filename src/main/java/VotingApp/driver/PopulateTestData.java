@@ -1,6 +1,12 @@
 package VotingApp.driver;
 
 import VotingApp.*;
+import VotingApp.poll.Poll;
+import VotingApp.poll.PollDAO;
+import VotingApp.user.User;
+import VotingApp.user.UserDAO;
+import VotingApp.vote.Vote;
+import VotingApp.vote.VoteDAO;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
