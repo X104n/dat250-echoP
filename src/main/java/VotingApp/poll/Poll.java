@@ -13,7 +13,7 @@ import java.util.Collection;
 public class Poll {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long pollID;
+    private Long id;
 
     private String title;
     private String description;
@@ -29,4 +29,17 @@ public class Poll {
 
     @OneToMany(mappedBy = "poll")
     private Collection<Vote> votes;
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+
+
+
+
 }
