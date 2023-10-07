@@ -1,4 +1,4 @@
-package VotingApp;
+package VotingApp.poll;
 
 import jakarta.persistence.EntityManager;
 
