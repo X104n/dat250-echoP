@@ -1,20 +1,19 @@
 package VotingApp.user;
 
+import org.springframework.stereotype.Service;
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
 
+@Service
 public class UserDAO {
 
+    @PersistenceContext
     private EntityManager entityManager;
-
-    public void setEntityManager(EntityManager entityManager) {
-        this.entityManager = entityManager;
-    }
 
     public void addUser(User user) {
         if (entityManager != null) {
             entityManager.persist(user);
         } else {
-            // Handle error: EntityManager not set.
         }
     }
 
@@ -24,9 +23,9 @@ public class UserDAO {
                     .setParameter("username", username)
                     .getSingleResult();
         } catch(Exception e) {
-            // Handle or log the error.
             return null;
         }
     }
+    public void setEntityManager(EntityManager em) {
+    }
 }
-
