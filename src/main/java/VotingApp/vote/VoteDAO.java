@@ -4,9 +4,10 @@ import VotingApp.poll.Poll;
 import VotingApp.user.User;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
-
+@Service
 public class VoteDAO {
     @PersistenceContext
     private EntityManager entityManager;

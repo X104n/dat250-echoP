@@ -40,6 +40,7 @@ public class VoteController {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
     @GetMapping("/getByPoll/{Poll}")
     public ResponseEntity<List<Vote>> getVoteByPoll(@PathVariable Poll poll) {
         try {
