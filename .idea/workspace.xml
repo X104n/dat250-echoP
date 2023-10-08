@@ -4,17 +4,28 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3b22750f-d84a-449d-a74f-b1e57a2449c5" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/VotingApp/user/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+    <list default="true" id="56782435-d428-415b-b111-0e6b064276d4" name="Changes" comment="andre forsøk">
+      <change afterPath="$PROJECT_DIR$/.idea/discord.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_10_7_2023_2_55_PM__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_10_7_2023_2_55_PM__Changes_.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DB.mv.db" beforeDir="false" afterPath="$PROJECT_DIR$/DB.mv.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DB.trace.db" beforeDir="false" afterPath="$PROJECT_DIR$/DB.trace.db" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/VotingApp/VotingApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/VotingApp/VotingApp.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/VotingApp/driver/PopulateTestData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/VotingApp/driver/PopulateTestData.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/VotingApp/user/UserDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/VotingApp/user/UserDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/VotingApp/driver/PopulateTestData.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/VotingApp/driver/PopulateTestData.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/VotingApp/vote/VoteController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/VotingApp/vote/VoteController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/VotingApp/vote/VoteDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/VotingApp/vote/VoteDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/VotingApp/Analytics.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/VotingApp/Analytics.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/VotingApp/IoTDevice.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/VotingApp/IoTDevice.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/VotingApp/Notification.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/VotingApp/Notification.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/VotingApp/driver/PopulateTestData$VotingAppMain.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/VotingApp/driver/PopulateTestData.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/VotingApp/poll/Poll.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/VotingApp/poll/Poll.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/VotingApp/poll/PollController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/VotingApp/poll/PollController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/VotingApp/poll/PollDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/VotingApp/poll/PollDAO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/VotingApp/user/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/VotingApp/user/User.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/VotingApp/user/UserDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/VotingApp/user/UserDAO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/VotingApp/vote/Vote.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/VotingApp/vote/Vote.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/VotingApp/vote/VoteController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/VotingApp/vote/VoteController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/VotingApp/vote/VoteDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/VotingApp/vote/VoteDAO.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -22,12 +33,34 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="main" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;How2sleep&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">
+    <option name="selectedUrlAndAccountId">
+      <UrlAndAccount>
+        <option name="accountId" value="0d0a4d76-2c62-4278-a742-fee311966f0d" />
+        <option name="url" value="https://github.com/X104n/dat250-echoP.git" />
+      </UrlAndAccount>
+    </option>
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
-  <component name="ProjectId" id="2WR7mS9SxKRVzadSCusL18vSlJw" />
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 6
+}</component>
+  <component name="ProjectId" id="2WR6U9ctxaQPjiLurgY2sxK3ZZc" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -38,37 +71,56 @@
     "RequestMappingsPanelOrder1": "1",
     "RequestMappingsPanelWidth0": "75",
     "RequestMappingsPanelWidth1": "75",
-    "last_opened_file_path": "C:/Users/stian/Documents",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "C:/Users/stian/Desktop/250111/dat250-echoP",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm"
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
-  <component name="RunManager">
-    <configuration name="VotingApp" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
+}]]></component>
+  <component name="RunManager" selected="Spring Boot.VotingApp">
+    <configuration name="PopulateTestData$VotingAppMain" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="VotingApp.driver.PopulateTestData$VotingAppMain" />
       <module name="jpa-tutorial" />
-      <option name="SPRING_BOOT_MAIN_CLASS" value="VotingApp.VotingApp" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="VotingApp.*" />
+          <option name="PATTERN" value="VotingApp.driver.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
       <method v="2">
         <option name="Make" enabled="true" />
-        <option name="com.soywiz.korge.intellij.UpdateResourceBeforeRunTask" enabled="false" />
+      </method>
+    </configuration>
+    <configuration name="VotingApp" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="jpa-tutorial" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="VotingApp.VotingApp" />
+      <method v="2">
+        <option name="Make" enabled="true" />
       </method>
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Spring Boot.VotingApp" />
+        <item itemvalue="Application.PopulateTestData$VotingAppMain" />
       </list>
     </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="56782435-d428-415b-b111-0e6b064276d4" name="Changes" comment="" />
+      <created>1696683058380</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1696683058380</updated>
+      <workItem from="1696683059394" duration="641000" />
+      <workItem from="1696684910666" duration="1824000" />
+    </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -84,5 +136,9 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="andre forsøk" />
+    <option name="LAST_COMMIT_MESSAGE" value="andre forsøk" />
   </component>
 </project>

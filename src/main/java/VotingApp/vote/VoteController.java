@@ -10,13 +10,12 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/vote")
 public class VoteController {
 
     @Autowired
     private VoteDAO voteDAO;
 
-    @PostMapping("/add")
+    @PostMapping("/vote")
     public String addUser(@RequestBody Vote vote) {
         try {
             voteDAO.addVote(vote);
@@ -26,7 +25,21 @@ public class VoteController {
         }
     }
 
-    @GetMapping("/getById/{id}")
+    @GetMapping("/vote")
+    public ResponseEntity<List<Vote>> getAllVotes() {
+        try {
+            List<Vote> votes = voteDAO.getAllVotes();
+            if (votes != null) {
+                return new ResponseEntity<>(votes, HttpStatus.OK);
+            } else {
+                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            }
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @GetMapping("/vote/{id}")
     public ResponseEntity<Vote> getVoteByID(@PathVariable Long id) {
         try {
             Vote vote = voteDAO.getVoteById(id);
@@ -40,7 +53,8 @@ public class VoteController {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-    @GetMapping("/getByPoll/{Poll}")
+
+    @GetMapping("/vote/{Poll}")
     public ResponseEntity<List<Vote>> getVoteByPoll(@PathVariable Poll poll) {
         try {
             List<Vote> votes = voteDAO.getVotesByPoll(poll);
@@ -54,7 +68,7 @@ public class VoteController {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-    @GetMapping("/getByUser/{User}")
+    @GetMapping("/vote/{User}")
     public ResponseEntity<List<Vote>> getVoteByUser(@PathVariable User user) {
         try {
             List<Vote> votes = voteDAO.getVotesByUser(user);
