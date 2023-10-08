@@ -1,8 +1,5 @@
 package VotingApp;
 
-import VotingApp.vote.Vote;
-import VotingApp.vote.VoteDAO;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 

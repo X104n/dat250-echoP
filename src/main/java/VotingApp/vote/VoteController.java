@@ -28,19 +28,13 @@ public class VoteController {
     @GetMapping("/vote")
     public ResponseEntity<List<Vote>> getAllVotes() {
         try {
-            System.out.println("11");
             List<Vote> votes = voteDAO.getAllVotes();
-            System.out.println("22");
             if (votes != null) {
-                System.out.println("33");
                 return new ResponseEntity<>(votes, HttpStatus.OK);
             } else {
-                System.out.println("4444");
                 return new ResponseEntity<>(HttpStatus.NOT_FOUND);
             }
         } catch (Exception e) {
-            // Handle or log the error
-            System.out.println("5555");
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
