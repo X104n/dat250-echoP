@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="a07d719e-73bf-490c-963f-eac0b3f3b536" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/src/main/java/VotingApp/driver/PopulateTestData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/VotingApp/driver/PopulateTestData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/VotingApp/poll/Poll.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/VotingApp/poll/Poll.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/VotingApp/poll/PollController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/VotingApp/poll/PollController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/VotingApp/poll/PollDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/VotingApp/poll/PollDAO.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "node.js.selected.package.tslint": "(autodetect)"
+  }
+}]]></component>
+  <component name="TaskManager">
+    <servers />
+  </component>
+</project>

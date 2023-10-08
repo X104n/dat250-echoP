@@ -17,7 +17,7 @@ public class PollController {
     private PollDAO pollDAO;
 
     @PostMapping("/add")
-    public String addUser(@RequestBody Poll poll) {
+    public String addPoll(@RequestBody Poll poll) {
         try {
             pollDAO.addPoll(poll);
             return "Poll added successfully!";
@@ -30,7 +30,6 @@ public class PollController {
     public ResponseEntity<?> getPollById(@PathVariable Long id) {
         try {
             Poll poll = pollDAO.getPollById(id);
-
             if (poll != null) {
                 return ResponseEntity.ok(poll);
             } else {
@@ -41,7 +40,6 @@ public class PollController {
                     .body("Error: " + e.getMessage());
         }
     }
-
 
     @GetMapping("/polls")
     public ResponseEntity<?> getAllPolls() {
@@ -54,6 +52,21 @@ public class PollController {
         }
     }
 
+    @PutMapping("/poll/{id}")
+    public ResponseEntity<?> updatePoll(
+            @PathVariable Long id,
+            @RequestBody Poll updatedPoll
+    ) {
+        try {
+                pollDAO.updatePoll(id, updatedPoll);
+                return ResponseEntity.ok("Poll updated successfully!");
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body("Error: " + e.getMessage());
+        }
+    }
+
+
     @DeleteMapping("/poll/{id}")
     public ResponseEntity<?> deletePollById(@PathVariable Long id) {
         try {
@@ -64,5 +77,7 @@ public class PollController {
                     .body("Error: " + e.getMessage());
         }
     }
+
+
 
 }

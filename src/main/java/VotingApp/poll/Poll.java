@@ -5,6 +5,8 @@ import VotingApp.vote.Vote;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+
+import java.sql.Timestamp;
 import java.util.Collection;
 
 @Entity
@@ -14,11 +16,11 @@ import java.util.Collection;
 public class Poll {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long pollId;
+    private Long pollID;
     private String title;
     private String question;
-    private java.sql.Timestamp startDateTime;
-    private java.sql.Timestamp endDateTime;
+    private Timestamp startDateTime;
+    private Timestamp endDateTime;
     private Boolean isPublic;
     private String pollLink;
     private String pollCode;
