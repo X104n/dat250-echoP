@@ -49,7 +49,6 @@ public class PopulateTestData {
 
         UserDAO userDAO = new UserDAO();
         userDAO.setEntityManager(em);
-
         User admin = new User();
         admin.setName("Andre Normann");
         admin.setEmail("andre.normann@hotmail.com");
