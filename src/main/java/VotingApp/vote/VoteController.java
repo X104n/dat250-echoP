@@ -14,7 +14,7 @@ import java.util.List;
 public class VoteController {
 
     @Autowired
-    private VoteDAO voteDAO;
+    private VoteDAO voteDAO = new VoteDAO();
 
     @PostMapping("/add")
     public String addUser(@RequestBody Vote vote) {

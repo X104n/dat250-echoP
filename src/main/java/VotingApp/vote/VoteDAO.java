@@ -3,11 +3,12 @@ package VotingApp.vote;
 import VotingApp.poll.Poll;
 import VotingApp.user.User;
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
 
 import java.util.List;
 
 public class VoteDAO {
-
+    @PersistenceContext
     private EntityManager entityManager;
 
     public void setEntityManager(EntityManager entityManager) {
