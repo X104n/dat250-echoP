@@ -16,12 +16,12 @@ public class VoteController {
     private VoteDAO voteDAO;
 
     @PostMapping("/vote")
-    public String addUser(@RequestBody Vote vote) {
+    public ResponseEntity<Vote> addVote(@RequestBody Vote vote) {
         try {
             voteDAO.addVote(vote);
-            return "User added successfully!";
+            return new ResponseEntity<>(vote, HttpStatus.OK);
         } catch (Exception e) {
-            return "Error: " + e.getMessage();
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
@@ -39,7 +39,7 @@ public class VoteController {
         }
     }
 
-    @GetMapping("/vote/{id}")
+    @GetMapping("/vote/id/{id}")
     public ResponseEntity<Vote> getVoteByID(@PathVariable Long id) {
         try {
             Vote vote = voteDAO.getVoteById(id);
@@ -54,7 +54,7 @@ public class VoteController {
         }
     }
 
-    @GetMapping("/vote/{Poll}")
+    @GetMapping("/vote/poll/{Poll}")
     public ResponseEntity<List<Vote>> getVoteByPoll(@PathVariable Poll poll) {
         try {
             List<Vote> votes = voteDAO.getVotesByPoll(poll);
@@ -68,7 +68,7 @@ public class VoteController {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-    @GetMapping("/vote/{User}")
+    @GetMapping("/vote/user/{User}")
     public ResponseEntity<List<Vote>> getVoteByUser(@PathVariable User user) {
         try {
             List<Vote> votes = voteDAO.getVotesByUser(user);
