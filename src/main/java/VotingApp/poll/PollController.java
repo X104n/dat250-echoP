@@ -1,67 +1,80 @@
 package VotingApp.poll;
 
-import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.*;
-import org.springframework.web.server.ResponseStatusException;
 
-import java.util.ArrayList;
+import VotingApp.vote.Vote;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
 public class PollController {
-    private Long idCounter;
-    private List<Poll> polls = new ArrayList<>();
-    public static final String POLL_WITH_THE_ID_X_NOT_FOUND = "Poll with the id %s not found!";
 
+    @Autowired
+    private PollDAO pollDAO;
 
-    @GetMapping("/polls")
-    public List<Poll> getPolls() {
-        return polls;
-    }
-
-    @PostMapping("/polls")
-    public Poll createPoll(@RequestBody Poll poll){
-        poll.setId(++idCounter);
-        polls.add(poll);
-        return poll;
-    }
-
-    @GetMapping("/polls/{id}")
-    public Object getPollById(@PathVariable Long id) {
-        // loops through list until I find the poll with the id
-        for (Poll poll : polls) {
-
-            if (poll.getId().equals(id)) {
-                return poll;
-            }
+    @PostMapping("/poll")
+    public ResponseEntity<Poll> addPoll(@RequestBody Poll poll) {
+        try {
+            pollDAO.addPoll(poll);
+            return new ResponseEntity<>(poll, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
-        throw new ResponseStatusException(HttpStatus.NOT_FOUND, String.format(POLL_WITH_THE_ID_X_NOT_FOUND, id));
     }
 
-    @PutMapping("/polls/{id}")
-    public Object updatePollById(@PathVariable Long id) {
-        // loops through list until I find the todo with the id
-
-        for (Poll poll : polls) {
-            if (poll.getId().equals(id)) {
-                return poll;
+    @GetMapping("/poll")
+    public ResponseEntity<List<Poll>> getAllPolls() {
+        try {
+            List<Poll> polls = pollDAO.getPolls();
+            if (polls != null) {
+                return new ResponseEntity<>(polls, HttpStatus.OK);
+            } else {
+                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
             }
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
-        throw new ResponseStatusException(HttpStatus.NOT_FOUND, String.format(POLL_WITH_THE_ID_X_NOT_FOUND, id));
     }
 
-    @DeleteMapping("/polls/{id}")
-    public void deletePollById(@PathVariable Long id) {
-        // loops through list until I find the poll with the id
-        for (Poll poll : polls) {
-            if (poll.getId().equals(id)) {
-                polls.remove(poll);
+    @GetMapping("/poll/{id}")
+    public ResponseEntity<?> getPollById(@PathVariable Long id) {
+        try {
+            Poll poll = pollDAO.getPollById(id);
+            if (poll != null) {
+                return ResponseEntity.ok(poll);
+            } else {
+                return ResponseEntity.notFound().build();
             }
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body("Error: " + e.getMessage());
         }
-        throw new ResponseStatusException(HttpStatus.NOT_FOUND, String.format(POLL_WITH_THE_ID_X_NOT_FOUND, id));
     }
 
+    @PutMapping("/poll/{id}")
+    public ResponseEntity<?> updatePoll(
+            @PathVariable Long id,
+            @RequestBody Poll updatedPoll
+    ) {
+        try {
+                pollDAO.updatePoll(id, updatedPoll);
+                return ResponseEntity.ok("Poll updated successfully!");
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body("Error: " + e.getMessage());
+        }
+    }
 
-
-
+    @DeleteMapping("/poll/{id}")
+    public ResponseEntity<?> deletePollById(@PathVariable Long id) {
+        try {
+            pollDAO.deletePollById(id);
+            return ResponseEntity.ok("Poll deleted successfully!");
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body("Error: " + e.getMessage());
+        }
+    }
 }

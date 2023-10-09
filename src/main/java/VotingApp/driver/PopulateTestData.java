@@ -49,6 +49,7 @@
 //
 //        UserDAO userDAO = new UserDAO();
 //        userDAO.setEntityManager(em);
+//
 //        User admin = new User();
 //        admin.setName("Andre Normann");
 //        admin.setEmail("andre.normann@hotmail.com");
@@ -95,8 +96,8 @@
 //        User user2 = em.find(User.class, 2L);
 //
 //        Poll poll1 = new Poll();
-//        poll1.setTitle("Er det for mye å gjøre i DAT250?");
-//        poll1.setDescription("I DAT250 er det obligger hele tiden");
+//        poll1.setTitle("Arbeidsmengde DAT250");
+//        poll1.setQuestion("Er det for mye å gjøre i DAT250?");
 //        poll1.setCreatedBy(admin);
 //        poll1.setStartDateTime(new Timestamp(System.currentTimeMillis()));
 //        poll1.setEndDateTime(new Timestamp(System.currentTimeMillis() + 86400000));
@@ -106,8 +107,8 @@
 //        pollDAO.addPoll(poll1);
 //
 //        Poll poll2 = new Poll();
-//        poll1.setTitle("Er det for mye å gjøre i DAT250?");
-//        poll1.setDescription("I DAT250 er det obligger hele tiden");
+//        poll1.setTitle("Arbeidsmengde DAT250");
+//        poll1.setQuestion("Er det for mye å gjøre i DAT250?");
 //        poll1.setCreatedBy(user2);
 //        poll1.setStartDateTime(new Timestamp(System.currentTimeMillis()));
 //        poll1.setEndDateTime(new Timestamp(System.currentTimeMillis() + 86400000));

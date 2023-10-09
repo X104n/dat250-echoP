@@ -5,20 +5,22 @@ import VotingApp.vote.Vote;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+
+import java.sql.Timestamp;
 import java.util.Collection;
 
 @Entity
+@Table(name = "polls")
 @Getter
 @Setter
 public class Poll {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
+    private Long pollID;
     private String title;
-    private String description;
-    private java.sql.Timestamp startDateTime;
-    private java.sql.Timestamp endDateTime;
+    private String question;
+    private Timestamp startDateTime;
+    private Timestamp endDateTime;
     private Boolean isPublic;
     private String pollLink;
     private String pollCode;
@@ -30,16 +32,20 @@ public class Poll {
     @OneToMany(mappedBy = "poll")
     private Collection<Vote> votes;
 
-    public void setId(Long id) {
-        this.id = id;
-    }
 
-    public Long getId() {
-        return id;
-    }
+
+
+
+
+
+
+
+
 
 
 
 
 
 }
+
+
