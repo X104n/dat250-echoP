@@ -3,16 +3,15 @@ package VotingApp.vote;
 import VotingApp.poll.Poll;
 import VotingApp.user.User;
 import jakarta.persistence.EntityManager;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
-
+@Service
 public class VoteDAO {
 
+    @Autowired
     private EntityManager entityManager;
-
-    public void setEntityManager(EntityManager entityManager) {
-        this.entityManager = entityManager;
-    }
 
     public void addVote(Vote vote) {
         entityManager.persist(vote);
@@ -20,6 +19,11 @@ public class VoteDAO {
 
     public Vote getVoteById(Long id) {
         return entityManager.find(Vote.class, id);
+    }
+
+    public List<Vote> getAllVotes() {
+        return entityManager.createQuery("SELECT v FROM Vote v", Vote.class)
+                .getResultList();
     }
 
     public List<Vote> getVotesByPoll(Poll poll) {
