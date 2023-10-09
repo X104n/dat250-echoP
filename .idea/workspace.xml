@@ -4,7 +4,25 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="56782435-d428-415b-b111-0e6b064276d4" name="Changes" comment="andre forsøk" />
+    <list default="true" id="56782435-d428-415b-b111-0e6b064276d4" name="Changes" comment="andre forsøk">
+      <change beforePath="$PROJECT_DIR$/src/main/java/VotingApp/user/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/VotingApp/user/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/VotingApp/user/UserDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/VotingApp/user/UserDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/VotingApp/vote/VoteController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/VotingApp/vote/VoteController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/VotingApp/vote/VoteDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/VotingApp/vote/VoteDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/VotingApp/Analytics.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/VotingApp/Analytics.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/VotingApp/IoTDevice.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/VotingApp/IoTDevice.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/VotingApp/Notification.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/VotingApp/Notification.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/VotingApp/VotingApp.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/VotingApp/VotingApp.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/VotingApp/poll/Poll.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/VotingApp/poll/Poll.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/VotingApp/poll/PollController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/VotingApp/poll/PollController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/VotingApp/poll/PollDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/VotingApp/poll/PollDAO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/VotingApp/user/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/VotingApp/user/User.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/VotingApp/user/UserController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/VotingApp/user/UserController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/VotingApp/user/UserDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/VotingApp/user/UserDAO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/VotingApp/vote/Vote.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/VotingApp/vote/Vote.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/VotingApp/vote/VoteController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/VotingApp/vote/VoteController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/VotingApp/vote/VoteDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/VotingApp/vote/VoteDAO.class" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -13,7 +31,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="main" />
+        <entry key="$PROJECT_DIR$" value="magnus" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />

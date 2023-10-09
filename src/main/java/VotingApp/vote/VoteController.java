@@ -28,7 +28,7 @@ public class VoteController {
     @GetMapping("/vote")
     public ResponseEntity<List<Vote>> getAllVotes() {
         try {
-            List<Vote> votes = voteDAO.getAllVotes();
+            List<Vote> votes = voteDAO.getVotes();
             if (votes != null) {
                 return new ResponseEntity<>(votes, HttpStatus.OK);
             } else {
