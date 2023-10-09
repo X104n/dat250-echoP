@@ -1,21 +1,26 @@
 package VotingApp.user;
 
+import jakarta.transaction.Transactional;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import jakarta.persistence.EntityManager;
 
+import java.util.List;
+
+@Service
 public class UserDAO {
 
+    @Autowired
     private EntityManager entityManager;
 
-    public void setEntityManager(EntityManager entityManager) {
-        this.entityManager = entityManager;
+    @Transactional
+    public void addUser(User user) {
+        entityManager.persist(user);
     }
 
-    public void addUser(User user) {
-        if (entityManager != null) {
-            entityManager.persist(user);
-        } else {
-            // Handle error: EntityManager not set.
-        }
+    public List<User> getUsers() {
+        return entityManager.createQuery("SELECT u FROM User u", User.class)
+                .getResultList();
     }
 
     public User getUserByUsername(String username) {
@@ -24,9 +29,23 @@ public class UserDAO {
                     .setParameter("username", username)
                     .getSingleResult();
         } catch(Exception e) {
-            // Handle or log the error.
             return null;
         }
     }
-}
+    @Transactional
+    public void updateUser(User user) {
+        if (entityManager != null) {
+            entityManager.merge(user);
+        }
+    }
+    @Transactional
+    public void deleteUser(String username) throws Exception {
+        User user = getUserByUsername(username);
+        if (user != null) {
+            entityManager.remove(user);
+        } else {
+            throw new Exception("User not found");
+        }
+    }
 
+}
