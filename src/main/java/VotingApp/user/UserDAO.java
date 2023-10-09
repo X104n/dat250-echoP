@@ -32,4 +32,20 @@ public class UserDAO {
             return null;
         }
     }
+    @Transactional
+    public void updateUser(User user) {
+        if (entityManager != null) {
+            entityManager.merge(user);
+        }
+    }
+    @Transactional
+    public void deleteUser(String username) throws Exception {
+        User user = getUserByUsername(username);
+        if (user != null) {
+            entityManager.remove(user);
+        } else {
+            throw new Exception("User not found");
+        }
+    }
+
 }

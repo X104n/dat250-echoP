@@ -39,6 +39,7 @@ public class VoteDAO {
                 .setParameter("user", user)
                 .getResultList();
     }
+    @Transactional
     public void deleteVoteById(Long id) {
         Vote vote = getVoteById(id);
         if (vote != null) {
