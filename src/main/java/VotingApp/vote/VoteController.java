@@ -25,6 +25,16 @@ public class VoteController {
         }
     }
 
+    @PutMapping("/vote")
+    public ResponseEntity<Vote> updateVote(@RequestBody Vote vote) {
+        try {
+            voteDAO.updateVote(vote);
+            return new ResponseEntity<>(vote, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
     @GetMapping("/vote")
     public ResponseEntity<List<Vote>> getVotes() {
         try {
@@ -79,6 +89,24 @@ public class VoteController {
             }
         } catch (Exception e) {
             // Handle or log the error
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+    @DeleteMapping("/vote/{id}")
+    public ResponseEntity<HttpStatus> deleteVotebyID(@PathVariable Long id) {
+        try {
+            voteDAO.deleteVoteById(id);
+            return new ResponseEntity<>(HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+    @DeleteMapping("/vote")
+    public ResponseEntity<HttpStatus> deleteVote(@RequestBody Vote vote) {
+        try {
+            voteDAO.deleteVote(vote);
+            return new ResponseEntity<>(HttpStatus.OK);
+        } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
