@@ -39,4 +39,25 @@ public class VoteDAO {
                 .setParameter("user", user)
                 .getResultList();
     }
+    public void deleteVoteById(Long id) {
+        Vote vote = getVoteById(id);
+        if (vote != null) {
+            entityManager.remove(vote);
+        }
+    }
+
+    public void deleteVote(Vote vote) {
+        entityManager.remove(vote);
+    }
+
+    public void updateVote(Vote vote) {
+        Long id = vote.getVoteID();
+        Vote voteToBeUpdated = getVoteById(id);
+        if (voteToBeUpdated != null) {
+            voteToBeUpdated.setChoice(vote.getChoice());
+            voteToBeUpdated.setPoll(vote.getPoll());
+            voteToBeUpdated.setUser(vote.getUser());
+        }
+        entityManager.persist(vote);
+    }
 }
