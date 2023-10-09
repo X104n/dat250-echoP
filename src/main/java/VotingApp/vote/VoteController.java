@@ -93,9 +93,18 @@ public class VoteController {
         }
     }
     @DeleteMapping("/vote/{id}")
-    public ResponseEntity<HttpStatus> deleteVote(@PathVariable Long id) {
+    public ResponseEntity<HttpStatus> deleteVotebyID(@PathVariable Long id) {
         try {
             voteDAO.deleteVoteById(id);
+            return new ResponseEntity<>(HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+    @DeleteMapping("/vote")
+    public ResponseEntity<HttpStatus> deleteVote(@RequestBody Vote vote) {
+        try {
+            voteDAO.deleteVote(vote);
             return new ResponseEntity<>(HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
