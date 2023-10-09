@@ -1,0 +1,53 @@
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<project version=\"4\">\n  <component name=\"AutoImportSettings\">\n    <option name=\"autoReloadType\" value=\"SELECTIVE\" />\n  </component>\n  <component name=\"ChangeListManager\">\n    <list default=\"true\" id=\"3b22750f-d84a-449d-a74f-b1e57a2449c5\" name=\"Changes\" comment=\"\">\n      <change afterPath=\"$PROJECT_DIR$/src/main/java/VotingApp/user/UserController.java\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/.idea/compiler.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/compiler.xml\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/DB.mv.db\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/DB.mv.db\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/DB.trace.db\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/DB.trace.db\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/VotingApp/VotingApp.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/VotingApp/VotingApp.java\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/VotingApp/driver/PopulateTestData.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/VotingApp/driver/PopulateTestData.java\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/VotingApp/user/UserDAO.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/VotingApp/user/UserDAO.java\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/target/classes/VotingApp/driver/PopulateTestData.class\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/target/classes/VotingApp/driver/PopulateTestData.class\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/target/classes/VotingApp/user/UserDAO.class\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/target/classes/VotingApp/user/UserDAO.class\" afterDir=\"false\" />\n    </list>\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\n  </component>\n  <component name=\"Git.Settings\">\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\n  </component>\n  <component name=\"MarkdownSettingsMigration\">\n    <option name=\"stateVersion\" value=\"1\" />\n  </component>\n  <component name=\"ProjectId\" id=\"2WR7mS9SxKRVzadSCusL18vSlJw\" />\n  <component name=\"ProjectViewState\">\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\n    <option name=\"showLibraryContents\" value=\"true\" />\n  </component>\n  <component name=\"PropertiesComponent\"><![CDATA[{\n  \"keyToString\": {\n    \"RequestMappingsPanelOrder0\": \"0\",\n    \"RequestMappingsPanelOrder1\": \"1\",\n    \"RequestMappingsPanelWidth0\": \"75\",\n    \"RequestMappingsPanelWidth1\": \"75\",\n    \"last_opened_file_path\": \"C:/Users/stian/Documents\",\n    \"node.js.detected.package.eslint\": \"true\",\n    \"node.js.detected.package.tslint\": \"true\",\n    \"node.js.selected.package.eslint\": \"(autodetect)\",\n    \"node.js.selected.package.tslint\": \"(autodetect)\",\n    \"nodejs_package_manager_path\": \"npm\"\n  }\n}]]></component>\n  <component name=\"RunManager\">\n    <configuration name=\"VotingApp\" type=\"SpringBootApplicationConfigurationType\" factoryName=\"Spring Boot\" temporary=\"true\" nameIsGenerated=\"true\">\n      <module name=\"jpa-tutorial\" />\n      <option name=\"SPRING_BOOT_MAIN_CLASS\" value=\"VotingApp.VotingApp\" />\n      <extension name=\"coverage\">\n        <pattern>\n          <option name=\"PATTERN\" value=\"VotingApp.*\" />\n          <option name=\"ENABLED\" value=\"true\" />\n        </pattern>\n      </extension>\n      <method v=\"2\">\n        <option name=\"Make\" enabled=\"true\" />\n        <option name=\"com.soywiz.korge.intellij.UpdateResourceBeforeRunTask\" enabled=\"false\" />\n      </method>\n    </configuration>\n    <recent_temporary>\n      <list>\n        <item itemvalue=\"Spring Boot.VotingApp\" />\n      </list>\n    </recent_temporary>\n  </component>\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\n  <component name=\"TaskManager\">\n    <servers />\n  </component>\n  <component name=\"TypeScriptGeneratedFilesManager\">\n    <option name=\"version\" value=\"3\" />\n  </component>\n  <component name=\"Vcs.Log.Tabs.Properties\">\n    <option name=\"TAB_STATES\">\n      <map>\n        <entry key=\"MAIN\">\n          <value>\n            <State />\n          </value>\n        </entry>\n      </map>\n    </option>\n  </component>\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	(revision 511d2dac8f20e86d36b1b9e01ac0ef1e3c17b60b)
++++ b/.idea/workspace.xml	(date 1696688071320)
+@@ -4,17 +4,8 @@
+     <option name="autoReloadType" value="SELECTIVE" />
+   </component>
+   <component name="ChangeListManager">
+-    <list default="true" id="3b22750f-d84a-449d-a74f-b1e57a2449c5" name="Changes" comment="">
+-      <change afterPath="$PROJECT_DIR$/src/main/java/VotingApp/user/UserController.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
++    <list default="true" id="3b22750f-d84a-449d-a74f-b1e57a2449c5" name="Changes" comment="UserController added #5">
+       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/DB.mv.db" beforeDir="false" afterPath="$PROJECT_DIR$/DB.mv.db" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/DB.trace.db" beforeDir="false" afterPath="$PROJECT_DIR$/DB.trace.db" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/VotingApp/VotingApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/VotingApp/VotingApp.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/VotingApp/driver/PopulateTestData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/VotingApp/driver/PopulateTestData.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/VotingApp/user/UserDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/VotingApp/user/UserDAO.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/target/classes/VotingApp/driver/PopulateTestData.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/VotingApp/driver/PopulateTestData.class" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/target/classes/VotingApp/user/UserDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/VotingApp/user/UserDAO.class" afterDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+@@ -69,6 +60,13 @@
+   </component>
+   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+   <component name="TaskManager">
++    <task id="LOCAL−00001" summary="UserController added #5">
++      <created>1696687603027</created>
++      <option name="number" value="LOCAL−00001" />
++      <option name="presentableId" value="LOCAL−00001" />
++      <updated>1696687603027</updated>
++    </task>
++    <option name="localTasksCounter" value="2" />
+     <servers />
+   </component>
+   <component name="TypeScriptGeneratedFilesManager">
+@@ -85,4 +83,8 @@
+       </map>
+     </option>
+   </component>
++  <component name="VcsManagerConfiguration">
++    <MESSAGE value="UserController added #5" />
++    <option name="LAST_COMMIT_MESSAGE" value="UserController added #5" />
++  </component>
+ </project>
+\ No newline at end of file

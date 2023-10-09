@@ -1,0 +1,116 @@
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<project version=\"4\">\n  <component name=\"ProjectViewState\">\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\n    <option name=\"showLibraryContents\" value=\"true\" />\n  </component>\n  <component name=\"PropertiesComponent\">{\n  &quot;keyToString&quot;: {\n    &quot;last_opened_file_path&quot;: &quot;C:/Users/stian/Documents&quot;\n  }\n}</component>\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	(revision 12bb34322f24a9179806e4ec293d2d1fa493e4e9)
++++ b/.idea/workspace.xml	(date 1696682773007)
+@@ -1,12 +1,58 @@
+ <?xml version="1.0" encoding="UTF-8"?>
+ <project version="4">
++  <component name="AutoImportSettings">
++    <option name="autoReloadType" value="SELECTIVE" />
++  </component>
++  <component name="ChangeListManager">
++    <list default="true" id="95b5b586-909b-4175-9072-23160c14498b" name="Changes" comment="">
++      <change afterPath="$PROJECT_DIR$/src/main/java/VotingApp/user/UserController.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
++    </list>
++    <option name="SHOW_DIALOG" value="false" />
++    <option name="HIGHLIGHT_CONFLICTS" value="true" />
++    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
++    <option name="LAST_RESOLUTION" value="IGNORE" />
++  </component>
++  <component name="FileTemplateManagerImpl">
++    <option name="RECENT_TEMPLATES">
++      <list>
++        <option value="Class" />
++      </list>
++    </option>
++  </component>
++  <component name="Git.Settings">
++    <option name="RECENT_BRANCH_BY_REPOSITORY">
++      <map>
++        <entry key="$PROJECT_DIR$" value="main" />
++      </map>
++    </option>
++    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
++  </component>
+   <component name="ProjectViewState">
+     <option name="hideEmptyMiddlePackages" value="true" />
+     <option name="showLibraryContents" value="true" />
+   </component>
+-  <component name="PropertiesComponent">{
+-  &quot;keyToString&quot;: {
+-    &quot;last_opened_file_path&quot;: &quot;C:/Users/stian/Documents&quot;
++  <component name="PropertiesComponent"><![CDATA[{
++  "keyToString": {
++    "last_opened_file_path": "C:/Users/stian/Documents",
++    "node.js.detected.package.eslint": "true",
++    "node.js.detected.package.tslint": "true",
++    "node.js.selected.package.eslint": "(autodetect)",
++    "node.js.selected.package.tslint": "(autodetect)"
+   }
+-}</component>
++}]]></component>
++  <component name="TaskManager">
++    <servers />
++  </component>
++  <component name="Vcs.Log.Tabs.Properties">
++    <option name="TAB_STATES">
++      <map>
++        <entry key="MAIN">
++          <value>
++            <State />
++          </value>
++        </entry>
++      </map>
++    </option>
++  </component>
+ </project>
+\ No newline at end of file
+Index: src/main/java/VotingApp/user/UserController.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/VotingApp/user/UserController.java b/src/main/java/VotingApp/user/UserController.java
+new file mode 100644
+--- /dev/null	(date 1696682318654)
++++ b/src/main/java/VotingApp/user/UserController.java	(date 1696682318654)
+@@ -0,0 +1,32 @@
++package VotingApp.user;
++
++import org.springframework.beans.factory.annotation.Autowired;
++import org.springframework.web.bind.annotation.*;
++
++@RestController
++@RequestMapping("/users")
++public class UserController {
++
++    @Autowired
++    private UserDAO userDAO;
++
++    @PostMapping("/add")
++    public String addUser(@RequestBody User user) {
++        try {
++            userDAO.addUser(user);
++            return "User added successfully!";
++        } catch (Exception e) {
++            return "Error: " + e.getMessage();
++        }
++    }
++
++    @GetMapping("/get/{username}")
++    public User getUserByUsername(@PathVariable String username) {
++        try {
++            return userDAO.getUserByUsername(username);
++        } catch (Exception e) {
++            // Handle or log the error
++            return null;
++        }
++    }
++}
