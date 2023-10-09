@@ -4,17 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3b22750f-d84a-449d-a74f-b1e57a2449c5" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/VotingApp/user/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+    <list default="true" id="3b22750f-d84a-449d-a74f-b1e57a2449c5" name="Changes" comment="UserController added #5">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DB.mv.db" beforeDir="false" afterPath="$PROJECT_DIR$/DB.mv.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DB.trace.db" beforeDir="false" afterPath="$PROJECT_DIR$/DB.trace.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/VotingApp/VotingApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/VotingApp/VotingApp.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/VotingApp/driver/PopulateTestData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/VotingApp/driver/PopulateTestData.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/VotingApp/user/UserDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/VotingApp/user/UserDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/VotingApp/driver/PopulateTestData.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/VotingApp/driver/PopulateTestData.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/VotingApp/user/UserDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/VotingApp/user/UserDAO.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,12 +29,14 @@
     "RequestMappingsPanelOrder1": "1",
     "RequestMappingsPanelWidth0": "75",
     "RequestMappingsPanelWidth1": "75",
+    "WebServerToolWindowFactoryState": "false",
     "last_opened_file_path": "C:/Users/stian/Documents",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm"
+    "nodejs_package_manager_path": "npm",
+    "spring.configuration.checksum": "24f1e466f94f1dea343b78b8b9568fc5"
   }
 }]]></component>
   <component name="RunManager">
@@ -69,6 +62,14 @@
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="3b22750f-d84a-449d-a74f-b1e57a2449c5" name="Changes" comment="UserController added #5" />
+      <created>1696847435424</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1696847435424</updated>
+      <workItem from="1696847436677" duration="370000" />
+    </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
