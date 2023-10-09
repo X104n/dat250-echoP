@@ -4,7 +4,21 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="56782435-d428-415b-b111-0e6b064276d4" name="Changes" comment="andre forsøk" />
+    <list default="true" id="56782435-d428-415b-b111-0e6b064276d4" name="Changes" comment="andre forsøk">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/VotingApp/user/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/VotingApp/user/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/VotingApp/user/UserDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/VotingApp/user/UserDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/VotingApp/vote/VoteDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/VotingApp/vote/VoteDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/VotingApp/poll/Poll.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/VotingApp/poll/PollController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/VotingApp/poll/PollDAO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/VotingApp/user/User.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/VotingApp/user/UserController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/VotingApp/user/UserDAO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/VotingApp/vote/Vote.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/VotingApp/vote/VoteController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/VotingApp/vote/VoteDAO.class" beforeDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -13,7 +27,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="main" />
+        <entry key="$PROJECT_DIR$" value="magnus" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -39,6 +53,7 @@
   &quot;associatedIndex&quot;: 6
 }</component>
   <component name="ProjectId" id="2WR6U9ctxaQPjiLurgY2sxK3ZZc" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -85,6 +100,8 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.PopulateTestData$VotingAppMain" />
+        <item itemvalue="Application.PopulateTestData$VotingAppMain" />
         <item itemvalue="Application.PopulateTestData$VotingAppMain" />
       </list>
     </recent_temporary>
