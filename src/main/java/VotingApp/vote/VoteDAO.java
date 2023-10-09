@@ -3,6 +3,7 @@ package VotingApp.vote;
 import VotingApp.poll.Poll;
 import VotingApp.user.User;
 import jakarta.persistence.EntityManager;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,6 +14,7 @@ public class VoteDAO {
     @Autowired
     private EntityManager entityManager;
 
+    @Transactional
     public void addVote(Vote vote) {
         entityManager.persist(vote);
     }
