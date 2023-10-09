@@ -23,7 +23,7 @@ public class VoteDAO {
         return entityManager.find(Vote.class, id);
     }
 
-    public List<Vote> getAllVotes() {
+    public List<Vote> getVotes() {
         return entityManager.createQuery("SELECT v FROM Vote v", Vote.class)
                 .getResultList();
     }

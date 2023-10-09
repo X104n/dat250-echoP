@@ -1,20 +1,26 @@
 package VotingApp.user;
 
+import jakarta.transaction.Transactional;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import jakarta.persistence.EntityManager;
-import jakarta.persistence.PersistenceContext;
+
+import java.util.List;
 
 @Service
 public class UserDAO {
 
-    @PersistenceContext
+    @Autowired
     private EntityManager entityManager;
 
+    @Transactional
     public void addUser(User user) {
-        if (entityManager != null) {
-            entityManager.persist(user);
-        } else {
-        }
+        entityManager.persist(user);
+    }
+
+    public List<User> getUsers() {
+        return entityManager.createQuery("SELECT u FROM User u", User.class)
+                .getResultList();
     }
 
     public User getUserByUsername(String username) {
@@ -25,7 +31,5 @@ public class UserDAO {
         } catch(Exception e) {
             return null;
         }
-    }
-    public void setEntityManager(EntityManager em) {
     }
 }

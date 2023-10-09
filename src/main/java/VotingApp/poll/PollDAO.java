@@ -2,6 +2,7 @@ package VotingApp.poll;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
+import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
 import java.sql.Timestamp;
@@ -14,15 +15,9 @@ public class PollDAO {
     @PersistenceContext
     private EntityManager entityManager;
 
-    public void setEntityManager(EntityManager entityManager) {
-        this.entityManager = entityManager;
-    }
-
+    @Transactional
     public void addPoll(Poll poll) {
-        if (entityManager != null) {
-            entityManager.persist(poll);
-        } else {
-        }
+        entityManager.persist(poll);
     }
 
     public Poll getPollById(Long pollId) {
@@ -35,14 +30,9 @@ public class PollDAO {
         }
     }
 
-    public List<Poll> getAllPolls() {
-        try {
+    public List<Poll> getPolls() {
             return entityManager.createQuery("SELECT p FROM Poll p", Poll.class)
                     .getResultList();
-        } catch(Exception e) {
-            // Handle any exceptions, e.g., database connection issues
-            return Collections.emptyList(); // Return an empty list in case of an error
-        }
     }
 
     public void updatePoll(Long pollId, Poll updatedPoll) {
