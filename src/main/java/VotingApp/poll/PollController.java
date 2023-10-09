@@ -1,13 +1,11 @@
 package VotingApp.poll;
 
 
+import VotingApp.vote.Vote;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.server.ResponseStatusException;
-
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -16,13 +14,27 @@ public class PollController {
     @Autowired
     private PollDAO pollDAO;
 
-    @PostMapping("/add")
-    public String addPoll(@RequestBody Poll poll) {
+    @PostMapping("/poll")
+    public ResponseEntity<Poll> addPoll(@RequestBody Poll poll) {
         try {
             pollDAO.addPoll(poll);
-            return "Poll added successfully!";
+            return new ResponseEntity<>(poll, HttpStatus.OK);
         } catch (Exception e) {
-            return "Error: " + e.getMessage();
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @GetMapping("/poll")
+    public ResponseEntity<List<Poll>> getAllPolls() {
+        try {
+            List<Poll> polls = pollDAO.getPolls();
+            if (polls != null) {
+                return new ResponseEntity<>(polls, HttpStatus.OK);
+            } else {
+                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            }
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
@@ -35,17 +47,6 @@ public class PollController {
             } else {
                 return ResponseEntity.notFound().build();
             }
-        } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                    .body("Error: " + e.getMessage());
-        }
-    }
-
-    @GetMapping("/polls")
-    public ResponseEntity<?> getAllPolls() {
-        try {
-            List<Poll> polls = pollDAO.getAllPolls();
-            return ResponseEntity.ok(polls);
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
                     .body("Error: " + e.getMessage());
@@ -66,7 +67,6 @@ public class PollController {
         }
     }
 
-
     @DeleteMapping("/poll/{id}")
     public ResponseEntity<?> deletePollById(@PathVariable Long id) {
         try {
@@ -77,7 +77,4 @@ public class PollController {
                     .body("Error: " + e.getMessage());
         }
     }
-
-
-
 }
