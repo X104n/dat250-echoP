@@ -2,6 +2,7 @@ package VotingApp.poll;
 
 
 import VotingApp.vote.Vote;
+import VotingApp.user.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -54,27 +55,38 @@ public class PollController {
     }
 
     @PutMapping("/poll/{id}")
-    public ResponseEntity<?> updatePoll(
-            @PathVariable Long id,
-            @RequestBody Poll updatedPoll
-    ) {
+    public ResponseEntity<String> updatePoll(@PathVariable Long id, @RequestBody Poll updatedPoll, @CurrentUser User currentUser) {
         try {
+            Poll existingPoll = pollDAO.getPollById(id);
+            if (existingPoll == null) {
+                return new ResponseEntity<>("Poll not found", HttpStatus.NOT_FOUND);
+            }
+            if (currentUser.getName().equals(existingPoll.getCreatedBy().getName()) || currentUser.getIsAdmin()) {
                 pollDAO.updatePoll(id, updatedPoll);
-                return ResponseEntity.ok("Poll updated successfully!");
+                return new ResponseEntity<>("Poll updated successfully!", HttpStatus.OK);
+            } else {
+                return new ResponseEntity<>("Permission denied", HttpStatus.FORBIDDEN);
+            }
         } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                    .body("Error: " + e.getMessage());
+            return new ResponseEntity<>("Error: " + e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
     @DeleteMapping("/poll/{id}")
-    public ResponseEntity<?> deletePollById(@PathVariable Long id) {
+    public ResponseEntity<String> deletePollById(@PathVariable Long id, @CurrentUser User currentUser) {
         try {
-            pollDAO.deletePollById(id);
-            return ResponseEntity.ok("Poll deleted successfully!");
+            Poll existingPoll = pollDAO.getPollById(id);
+            if (existingPoll == null) {
+                return new ResponseEntity<>("Poll not found", HttpStatus.NOT_FOUND);
+            }
+            if (currentUser.getName().equals(existingPoll.getCreatedBy().getName()) || currentUser.getIsAdmin()) {
+                pollDAO.deletePollById(id);
+                return new ResponseEntity<>("Poll deleted successfully!", HttpStatus.OK);
+            } else {
+                return new ResponseEntity<>("Permission denied", HttpStatus.FORBIDDEN);
+            }
         } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                    .body("Error: " + e.getMessage());
+            return new ResponseEntity<>("Error: " + e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 }

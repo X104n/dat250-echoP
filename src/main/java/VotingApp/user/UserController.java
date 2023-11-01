@@ -47,24 +47,32 @@ public class UserController {
                 return new ResponseEntity<>(HttpStatus.NOT_FOUND);
             }
         } catch (Exception e) {
-            // Handle or log the error
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-    @PutMapping("/update")
-    public String updateUser(@RequestBody User user) {
+    @PutMapping("/update/{username}")
+    public ResponseEntity<String> updateUser(@PathVariable String username, @RequestBody User updatedUser, @CurrentUser User currentUser) {
         try {
-            userDAO.updateUser(user);
-            return "User updated successfully!";
+            if (currentUser.getName().equals(username) || currentUser.getIsAdmin()) {
+                userDAO.updateUser(updatedUser);
+                return new ResponseEntity<>("User updated successfully!", HttpStatus.OK);
+            } else {
+                return new ResponseEntity<>("Permission denied", HttpStatus.FORBIDDEN);
+            }
         } catch (Exception e) {
-            return "Error: " + e.getMessage();
+            return new ResponseEntity<>("Error: " + e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
     @DeleteMapping("/delete/{username}")
-    public ResponseEntity<String> deleteUser(@PathVariable String username) {
+    public ResponseEntity<String> deleteUser(@PathVariable String username, @CurrentUser User currentUser) {
         try {
-            userDAO.deleteUser(username);
-            return new ResponseEntity<>("User deleted successfully!", HttpStatus.OK);
+            if (currentUser.getName().equals(username) || currentUser.getIsAdmin()) {
+                userDAO.deleteUser(username);
+                return new ResponseEntity<>("User deleted successfully!", HttpStatus.OK);
+            } else {
+                return new ResponseEntity<>("Permission denied", HttpStatus.FORBIDDEN);
+            }
         } catch (Exception e) {
             return new ResponseEntity<>("Error: " + e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
         }

@@ -25,13 +25,21 @@ public class VoteController {
         }
     }
 
-    @PutMapping("/vote")
-    public ResponseEntity<Vote> updateVote(@RequestBody Vote vote) {
+    @PutMapping("/vote/{id}")
+    public ResponseEntity<String> updateVote(@PathVariable Long id, @RequestBody Vote updatedVote, @CurrentUser User currentUser) {
         try {
-            voteDAO.updateVote(vote);
-            return new ResponseEntity<>(vote, HttpStatus.OK);
+            Vote existingVote = voteDAO.getVoteById(id);
+            if (existingVote == null) {
+                return new ResponseEntity<>("Vote not found", HttpStatus.NOT_FOUND);
+            }
+            if (currentUser.getUserID().equals(existingVote.getUser().getUserID()) || currentUser.getIsAdmin()) {
+                voteDAO.updateVote(updatedVote);
+                return new ResponseEntity<>("Vote updated successfully!", HttpStatus.OK);
+            } else {
+                return new ResponseEntity<>("Permission denied", HttpStatus.FORBIDDEN);
+            }
         } catch (Exception e) {
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<>("Error: " + e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
@@ -59,7 +67,6 @@ public class VoteController {
                 return new ResponseEntity<>(HttpStatus.NOT_FOUND);
             }
         } catch (Exception e) {
-            // Handle or log the error
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
@@ -74,7 +81,6 @@ public class VoteController {
                 return new ResponseEntity<>(HttpStatus.NOT_FOUND);
             }
         } catch (Exception e) {
-            // Handle or log the error
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
@@ -88,17 +94,24 @@ public class VoteController {
                 return new ResponseEntity<>(HttpStatus.NOT_FOUND);
             }
         } catch (Exception e) {
-            // Handle or log the error
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
     @DeleteMapping("/vote/{id}")
-    public ResponseEntity<HttpStatus> deleteVotebyID(@PathVariable Long id) {
+    public ResponseEntity<String> deleteVoteById(@PathVariable Long id, @CurrentUser User currentUser) {
         try {
-            voteDAO.deleteVoteById(id);
-            return new ResponseEntity<>(HttpStatus.OK);
+            Vote existingVote = voteDAO.getVoteById(id);
+            if (existingVote == null) {
+                return new ResponseEntity<>("Vote not found", HttpStatus.NOT_FOUND);
+            }
+            if (currentUser.getUserID().equals(existingVote.getUser().getUserID()) || currentUser.getIsAdmin()) {
+                voteDAO.deleteVoteById(id);
+                return new ResponseEntity<>("Vote deleted successfully!", HttpStatus.OK);
+            } else {
+                return new ResponseEntity<>("Permission denied", HttpStatus.FORBIDDEN);
+            }
         } catch (Exception e) {
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<>("Error: " + e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
     @DeleteMapping("/vote")
