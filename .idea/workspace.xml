@@ -5,23 +5,24 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="56782435-d428-415b-b111-0e6b064276d4" name="Changes" comment="andre forsøk">
-      <change beforePath="$PROJECT_DIR$/src/main/java/VotingApp/user/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/VotingApp/user/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/VotingApp/user/UserDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/VotingApp/user/UserDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/VotingApp/vote/VoteController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/VotingApp/vote/VoteController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_08_10_2023_21_09_[Changes]/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_08_10_2023_21_09__Changes_.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_10_7_2023_2_55_PM_[Changes]/Analytics.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_10_7_2023_2_55_PM_[Changes]/DB.mv.db" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_10_7_2023_2_55_PM_[Changes]/IoTDevice.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_10_7_2023_2_55_PM_[Changes]/Notification.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_10_7_2023_2_55_PM_[Changes]/PopulateTestData$VotingAppMain.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_10_7_2023_2_55_PM_[Changes]/PopulateTestData.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_10_7_2023_2_55_PM_[Changes]/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_10_7_2023_2_55_PM__Changes_.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Merge_at_10_9_2023_1_38_PM__Changes_.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Merge_at_10_9_2023_1_39_PM__Changes_.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/VotingApp/Analytics.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/VotingApp/poll/PollDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/VotingApp/poll/PollDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/VotingApp/user/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/VotingApp/user/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/VotingApp/vote/Vote.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/VotingApp/vote/Vote.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/VotingApp/vote/VoteDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/VotingApp/vote/VoteDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/VotingApp/Analytics.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/VotingApp/Analytics.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/VotingApp/IoTDevice.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/VotingApp/IoTDevice.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/VotingApp/Notification.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/VotingApp/Notification.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/VotingApp/VotingApp.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/VotingApp/VotingApp.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/VotingApp/poll/Poll.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/VotingApp/poll/Poll.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/VotingApp/poll/PollController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/VotingApp/poll/PollController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/VotingApp/poll/PollDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/VotingApp/poll/PollDAO.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/VotingApp/user/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/VotingApp/user/User.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/VotingApp/user/UserController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/VotingApp/user/UserController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/VotingApp/user/UserDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/VotingApp/user/UserDAO.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/VotingApp/vote/Vote.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/VotingApp/vote/Vote.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/VotingApp/vote/VoteController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/VotingApp/vote/VoteController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/VotingApp/vote/VoteDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/VotingApp/vote/VoteDAO.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -118,6 +119,9 @@
       <updated>1696683058380</updated>
       <workItem from="1696683059394" duration="641000" />
       <workItem from="1696684910666" duration="1824000" />
+      <workItem from="1698316861483" duration="2931000" />
+      <workItem from="1698757092572" duration="121000" />
+      <workItem from="1698828987138" duration="4038000" />
     </task>
     <servers />
   </component>
@@ -137,6 +141,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="andre forsøk" />
-    <option name="LAST_COMMIT_MESSAGE" value="andre forsøk" />
+    <MESSAGE value="dao Partway implemented" />
+    <option name="LAST_COMMIT_MESSAGE" value="dao Partway implemented" />
   </component>
 </project>

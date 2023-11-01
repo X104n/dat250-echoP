@@ -5,6 +5,7 @@ import jakarta.persistence.PersistenceContext;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
+import java.awt.*;
 import java.sql.Timestamp;
 import java.util.Collections;
 import java.util.List;
@@ -73,6 +74,16 @@ public class PollDAO {
             // No need to handle the case where the poll is not found since it's void
         } catch (Exception e) {
             // Handle any exceptions, e.g., database connection issues
+        }
+    }
+
+    public List<Poll> getPollsByUser(Long userId) {
+        try {
+            return entityManager.createQuery("SELECT p FROM Poll p WHERE p.createdBy.id = :userId", Poll.class)
+                    .setParameter("userId", userId)
+                    .getResultList();
+        } catch(Exception e) {
+            return null;
         }
     }
 

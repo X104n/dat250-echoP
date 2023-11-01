@@ -1,6 +1,7 @@
 package VotingApp.user;
 
 import VotingApp.poll.Poll;
+import VotingApp.vote.Vote;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -25,4 +26,7 @@ public class User {
 
     @OneToMany(mappedBy = "createdBy")
     private Collection<Poll> polls = new ArrayList<>();
+
+    @OneToMany(mappedBy = "user")
+    private Collection<Vote> votes = new ArrayList<>();
 }

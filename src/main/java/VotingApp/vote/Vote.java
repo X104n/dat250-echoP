@@ -14,7 +14,7 @@ public class Vote {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long voteID;
 
-    private String choice;
+    private Boolean choice;
 
     @ManyToOne
     @JoinColumn(name = "user_id")
