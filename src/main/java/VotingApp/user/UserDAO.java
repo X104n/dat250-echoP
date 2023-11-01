@@ -1,5 +1,6 @@
 package VotingApp.user;
 
+import VotingApp.poll.Poll;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -29,6 +30,15 @@ public class UserDAO {
                     .setParameter("username", username)
                     .getSingleResult();
         } catch(Exception e) {
+            return null;
+        }
+    }
+    public List<Poll> getpollsbyuser(Long userid){
+        try{
+            return entityManager.createQuery("SELECT p FROM Poll p WHERE p.createdBy = :userid", Poll.class)
+                    .setParameter("userid", userid)
+                    .getResultList();
+        }catch(Exception e){
             return null;
         }
     }

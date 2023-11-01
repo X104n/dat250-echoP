@@ -4,25 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="56782435-d428-415b-b111-0e6b064276d4" name="Changes" comment="andre forsøk">
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_08_10_2023_21_09_[Changes]/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_08_10_2023_21_09__Changes_.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_10_7_2023_2_55_PM_[Changes]/Analytics.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_10_7_2023_2_55_PM_[Changes]/DB.mv.db" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_10_7_2023_2_55_PM_[Changes]/IoTDevice.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_10_7_2023_2_55_PM_[Changes]/Notification.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_10_7_2023_2_55_PM_[Changes]/PopulateTestData$VotingAppMain.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_10_7_2023_2_55_PM_[Changes]/PopulateTestData.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_10_7_2023_2_55_PM_[Changes]/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_10_7_2023_2_55_PM__Changes_.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Merge_at_10_9_2023_1_38_PM__Changes_.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Merge_at_10_9_2023_1_39_PM__Changes_.xml" beforeDir="false" />
+    <list default="true" id="56782435-d428-415b-b111-0e6b064276d4" name="Changes" comment="fjernet analytics og la til i poll.&#10;endret choice i vote til boolean">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/VotingApp/Analytics.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/VotingApp/poll/PollDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/VotingApp/poll/PollDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/VotingApp/user/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/VotingApp/user/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/VotingApp/vote/Vote.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/VotingApp/vote/Vote.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/VotingApp/vote/VoteDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/VotingApp/vote/VoteDAO.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -121,8 +104,16 @@
       <workItem from="1696684910666" duration="1824000" />
       <workItem from="1698316861483" duration="2931000" />
       <workItem from="1698757092572" duration="121000" />
-      <workItem from="1698828987138" duration="4038000" />
+      <workItem from="1698828987138" duration="5039000" />
     </task>
+    <task id="LOCAL−00001" summary="fjernet analytics og la til i poll.&#10;endret choice i vote til boolean">
+      <option name="closed" value="true" />
+      <created>1698834740295</created>
+      <option name="number" value="LOCAL−00001" />
+      <option name="presentableId" value="LOCAL−00001" />
+      <updated>1698834740295</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -142,6 +133,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="andre forsøk" />
     <MESSAGE value="dao Partway implemented" />
-    <option name="LAST_COMMIT_MESSAGE" value="dao Partway implemented" />
+    <MESSAGE value="fjernet analytics og la til i poll.&#10;endret choice i vote til boolean" />
+    <option name="LAST_COMMIT_MESSAGE" value="fjernet analytics og la til i poll.&#10;endret choice i vote til boolean" />
   </component>
 </project>

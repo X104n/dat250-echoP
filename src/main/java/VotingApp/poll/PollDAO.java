@@ -77,15 +77,5 @@ public class PollDAO {
         }
     }
 
-    public List<Poll> getPollsByUser(Long userId) {
-        try {
-            return entityManager.createQuery("SELECT p FROM Poll p WHERE p.createdBy.id = :userId", Poll.class)
-                    .setParameter("userId", userId)
-                    .getResultList();
-        } catch(Exception e) {
-            return null;
-        }
-    }
-
 
 }
