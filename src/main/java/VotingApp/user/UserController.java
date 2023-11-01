@@ -55,7 +55,7 @@ public class UserController {
     @GetMapping("/user/poll/{userid}")
     public ResponseEntity<List<Poll>> getPollsByUser(@PathVariable Long userid){
         try{
-            List<Poll> polls = userDAO.getpollsbyuser(userid);
+            List<Poll> polls = userDAO.getPollsByUser(userid);
             if(polls != null){
                 return new ResponseEntity<>(polls, HttpStatus.OK);
             }else{
