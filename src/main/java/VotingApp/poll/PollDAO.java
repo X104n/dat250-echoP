@@ -1,8 +1,11 @@
 package VotingApp.poll;
 
+import VotingApp.mqtt.MqttService;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.transaction.Transactional;
+import org.eclipse.paho.client.mqttv3.MqttException;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.sql.Timestamp;
@@ -14,6 +17,9 @@ public class PollDAO {
 
     @PersistenceContext
     private EntityManager entityManager;
+
+    @Autowired
+    private MqttService mqttService;
 
     @Transactional
     public void addPoll(Poll poll) {
@@ -46,7 +52,7 @@ public class PollDAO {
                 poll.setQuestion(updatedPoll.getQuestion());
                 poll.setStartDateTime(updatedPoll.getStartDateTime());
                 poll.setEndDateTime(updatedPoll.getEndDateTime());
-                poll.setIsPublic(updatedPoll.getIsPublic());
+                poll.setIsActive(updatedPoll.getIsActive());
 
                 // Persist the changes to the database
                 entityManager.merge(poll);
@@ -58,6 +64,19 @@ public class PollDAO {
         }
     }
 
+    public List<Poll> getPollsToActivate() {
+        Timestamp currentTimestamp = new Timestamp(System.currentTimeMillis());
+        return entityManager.createQuery("SELECT p FROM Poll p WHERE p.startDateTime <= :currentTimestamp AND p.isActive IS FALSE", Poll.class)
+                .setParameter("currentTimestamp", currentTimestamp)
+                .getResultList();
+    }
+
+    public List<Poll> getPollsToEnd() {
+        Timestamp currentTimestamp = new Timestamp(System.currentTimeMillis());
+        return entityManager.createQuery("SELECT p FROM Poll p WHERE p.endDateTime <= :currentTimestamp AND p.isActive IS TRUE", Poll.class)
+                .setParameter("currentTimestamp", currentTimestamp)
+                .getResultList();
+    }
 
 
 
@@ -75,6 +94,4 @@ public class PollDAO {
             // Handle any exceptions, e.g., database connection issues
         }
     }
-
-
 }
