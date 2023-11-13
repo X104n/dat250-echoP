@@ -1,3 +1,3 @@
-[submodule "frontend"]
-	path = frontend
-	url = git@github.com:X104n/frontend.git
+[submodule "FeedApp"]
+	path = FeedApp
+	url = git@github.com:X104n/FeedApp.git
