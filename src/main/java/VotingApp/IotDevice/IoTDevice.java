@@ -1,4 +1,4 @@
-package VotingApp;
+package VotingApp.IotDevice;
 
 import VotingApp.poll.Poll;
 import jakarta.persistence.*;

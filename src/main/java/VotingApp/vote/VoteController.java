@@ -1,6 +1,7 @@
 package VotingApp.vote;
 
 import VotingApp.poll.Poll;
+import VotingApp.poll.PollDAO;
 import VotingApp.user.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -15,10 +16,14 @@ public class VoteController {
     @Autowired
     private VoteDAO voteDAO;
 
+    @Autowired
+    private PollDAO pollDAO;
+
     @PostMapping("/vote")
     public ResponseEntity<Vote> addVote(@RequestBody Vote vote) {
         try {
             voteDAO.addVote(vote);
+            pollDAO.addGreenAndRedVotes(vote);
             return new ResponseEntity<>(vote, HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
@@ -28,7 +33,15 @@ public class VoteController {
     @PutMapping("/vote")
     public ResponseEntity<Vote> updateVote(@RequestBody Vote vote) {
         try {
+            Vote oldVote = voteDAO.getVoteById(vote.getVoteID());
+            if (oldVote.getChoice() != vote.getChoice()) {
+                pollDAO.deleteGreenAndRedVotes(oldVote);
+                pollDAO.addGreenAndRedVotes(oldVote);
+            }
+            pollDAO.addGreenAndRedVotes(vote);
+
             voteDAO.updateVote(vote);
+
             return new ResponseEntity<>(vote, HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
@@ -95,6 +108,8 @@ public class VoteController {
     @DeleteMapping("/vote/{id}")
     public ResponseEntity<HttpStatus> deleteVotebyID(@PathVariable Long id) {
         try {
+            Vote vote = voteDAO.getVoteById(id);
+            pollDAO.deleteGreenAndRedVotes(vote);
             voteDAO.deleteVoteById(id);
             return new ResponseEntity<>(HttpStatus.OK);
         } catch (Exception e) {
@@ -104,6 +119,7 @@ public class VoteController {
     @DeleteMapping("/vote")
     public ResponseEntity<HttpStatus> deleteVote(@RequestBody Vote vote) {
         try {
+            pollDAO.deleteGreenAndRedVotes(vote);
             voteDAO.deleteVote(vote);
             return new ResponseEntity<>(HttpStatus.OK);
         } catch (Exception e) {

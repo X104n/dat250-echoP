@@ -24,13 +24,14 @@ public class Poll {
     private Boolean isPublic;
     private String pollLink;
     private String pollCode;
+    private int redVotes;
+    private int greenVotes;
+
 
     @ManyToOne
     @JoinColumn(name = "created_by_user")
     private User createdBy;
 
-    @OneToMany(mappedBy = "poll")
-    private Collection<Vote> votes;
 
 
 
