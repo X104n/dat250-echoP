@@ -31,7 +31,7 @@ public class VoteController {
     }
 
     @PutMapping("/vote/{id}")
-    public ResponseEntity<String> updateVote(@PathVariable Long id, @RequestBody Vote updatedVote, @CurrentUser User currentUser) {
+    public ResponseEntity<String> updateVote(@PathVariable Long id, @RequestBody Vote updatedVote, @RequestHeader User currentUser) {
         try {
             Vote existingVote = voteDAO.getVoteById(id);
             if (existingVote == null) {
@@ -103,7 +103,7 @@ public class VoteController {
         }
     }
     @DeleteMapping("/vote/{id}")
-    public ResponseEntity<String> deleteVoteById(@PathVariable Long id, @CurrentUser User currentUser) {
+    public ResponseEntity<String> deleteVoteById(@PathVariable Long id, @RequestHeader User currentUser) {
         try {
             Vote existingVote = voteDAO.getVoteById(id);
             if (existingVote == null) {

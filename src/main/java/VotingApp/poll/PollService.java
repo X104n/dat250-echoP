@@ -28,28 +28,28 @@ public class PollService {
     public void activateNewPolls() {
         List<Poll> pollsToActivate = pollDAO.getPollsToActivate();
         for (Poll poll : pollsToActivate) {
-            poll.setIsActive(true);
-            pollDAO.updatePoll(poll.getPollID(), poll);
+            poll.setRequireLogin(true);
+            pollDAO.updatePoll(poll.getId(), poll);
             Map<String, Object> startData = new HashMap<>();
-            startData.put("pollId", poll.getPollID());
+            startData.put("id", poll.getId());
             startData.put("event", "start");
-            dweetService.sendDweet("my_poll_event_" + poll.getPollID(), startData);
+            dweetService.sendDweet("my_poll_event_" + poll.getId(), startData);
         }
     }
 
     // Method to close expired polls and publish results
-    @Scheduled(fixedRate = 60000) // Runs every 60 seconds as an example
+    @Scheduled(fixedRate = 60000)
     public void closeExpiredPolls() {
         List<Poll> pollsToClose = pollDAO.getPollsToEnd();
         for (Poll poll : pollsToClose) {
-            poll.setIsActive(false);
-            pollDAO.updatePoll(poll.getPollID(), poll);
+            poll.setRequireLogin(false);
+            pollDAO.updatePoll(poll.getId(), poll);
 
             // Notify the poll end event via dweet.io
             Map<String, Object> endData = new HashMap<>();
-            endData.put("pollId", poll.getPollID());
+            endData.put("id", poll.getId());
             endData.put("event", "end");
-            dweetService.sendDweet("my_poll_event_" + poll.getPollID(), endData);
+            dweetService.sendDweet("my_poll_event_" + poll.getId(), endData);
 
             // Publish poll results via MQTT
             String pollResults = getPollResults(poll);
@@ -65,6 +65,7 @@ public class PollService {
     private String getPollResults(Poll poll) {
         // Logic to format and return poll results as a String
         // This could be a JSON representation or any other format suitable for your subscribers
-        return "Results for poll " + poll.getPollID() + ": ...";
+        String result = "Poll results for " + poll.getTitle() + "\n" + poll.getGreenVotes() + " green votes\n" + poll.getRedVotes() + " red votes";
+        return result;
     }
 }

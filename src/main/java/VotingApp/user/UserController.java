@@ -66,9 +66,9 @@ public class UserController {
         }
     }
     @PutMapping("/update/{username}")
-    public ResponseEntity<String> updateUser(@PathVariable String username, @RequestBody User updatedUser, @CurrentUser User currentUser) {
+    public ResponseEntity<String> updateUser(@PathVariable String username, @RequestBody User updatedUser, @RequestHeader User currentUser) {
         try {
-            if (currentUser.getName().equals(username) || currentUser.getIsAdmin()) {
+            if (currentUser.getUsername().equals(username) || currentUser.getIsAdmin()) {
                 userDAO.updateUser(updatedUser);
                 return new ResponseEntity<>("User updated successfully!", HttpStatus.OK);
             } else {
@@ -80,9 +80,9 @@ public class UserController {
     }
 
     @DeleteMapping("/delete/{username}")
-    public ResponseEntity<String> deleteUser(@PathVariable String username, @CurrentUser User currentUser) {
+    public ResponseEntity<String> deleteUser(@PathVariable String username, @RequestHeader User currentUser) {
         try {
-            if (currentUser.getName().equals(username) || currentUser.getIsAdmin()) {
+            if (currentUser.getUsername().equals(username) || currentUser.getIsAdmin()) {
                 userDAO.deleteUser(username);
                 return new ResponseEntity<>("User deleted successfully!", HttpStatus.OK);
             } else {

@@ -55,13 +55,13 @@ public class PollController {
     }
 
     @PutMapping("/poll/{id}")
-    public ResponseEntity<String> updatePoll(@PathVariable Long id, @RequestBody Poll updatedPoll, @CurrentUser User currentUser) {
+    public ResponseEntity<String> updatePoll(@PathVariable Long id, @RequestBody Poll updatedPoll, @RequestHeader User currentUser) {
         try {
             Poll existingPoll = pollDAO.getPollById(id);
             if (existingPoll == null) {
                 return new ResponseEntity<>("Poll not found", HttpStatus.NOT_FOUND);
             }
-            if (currentUser.getName().equals(existingPoll.getCreatedBy().getName()) || currentUser.getIsAdmin()) {
+            if (currentUser.getUsername().equals(existingPoll.getCreatedBy().getUsername()) || currentUser.getIsAdmin()) {
                 pollDAO.updatePoll(id, updatedPoll);
                 return new ResponseEntity<>("Poll updated successfully!", HttpStatus.OK);
             } else {
@@ -73,13 +73,13 @@ public class PollController {
     }
 
     @DeleteMapping("/poll/{id}")
-    public ResponseEntity<String> deletePollById(@PathVariable Long id, @CurrentUser User currentUser) {
+    public ResponseEntity<String> deletePollById(@PathVariable Long id, @RequestHeader User currentUser) {
         try {
             Poll existingPoll = pollDAO.getPollById(id);
             if (existingPoll == null) {
                 return new ResponseEntity<>("Poll not found", HttpStatus.NOT_FOUND);
             }
-            if (currentUser.getName().equals(existingPoll.getCreatedBy().getName()) || currentUser.getIsAdmin()) {
+            if (currentUser.getUsername().equals(existingPoll.getCreatedBy().getUsername()) || currentUser.getIsAdmin()) {
                 pollDAO.deletePollById(id);
                 return new ResponseEntity<>("Poll deleted successfully!", HttpStatus.OK);
             } else {

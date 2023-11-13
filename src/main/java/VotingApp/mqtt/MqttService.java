@@ -24,8 +24,8 @@ public class MqttService implements MqttCallback {
         options.setConnectionTimeout(10);
 
         // Set the username and password if your HiveMQ Cloud instance requires authentication
-        //options.setUserName("your_username");
-        //options.setPassword("your_password".toCharArray());
+        options.setUserName("echoP");
+        options.setPassword("Dat250hvl".toCharArray());
 
         mqttClient.setCallback(this);
         mqttClient.connect(options);
