@@ -1,0 +1,3 @@
+[submodule "FeedApp"]
+	path = FeedApp
+	url = git@github.com:X104n/FeedApp.git
