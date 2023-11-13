@@ -65,5 +65,24 @@ public class UserController {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+    @PutMapping("/update")
+    public String updateUser(@RequestBody User user) {
+        try {
+            userDAO.updateUser(user);
+            return "User updated successfully!";
+        } catch (Exception e) {
+            return "Error: " + e.getMessage();
+        }
+    }
+    @DeleteMapping("/delete/{username}")
+    public ResponseEntity<String> deleteUser(@PathVariable String username) {
+        try {
+            userDAO.deleteUser(username);
+            return new ResponseEntity<>("User deleted successfully!", HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>("Error: " + e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
 }
 
