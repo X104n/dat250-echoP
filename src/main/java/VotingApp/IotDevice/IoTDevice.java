@@ -1,4 +1,4 @@
-package VotingApp;
+package VotingApp.IotDevice;
 
 import VotingApp.poll.Poll;
 import jakarta.persistence.*;
@@ -8,19 +8,16 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
-public class Analytics {
+public class IoTDevice {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long analyticsID;
+    private Long deviceID;
+
+    private String deviceType;
 
     private Long linkedPollID;
-    private Integer totalGreenVotes;
-    private Integer totalRedVotes;
-    private java.sql.Timestamp createdDate;
 
     @ManyToOne
-    @JoinColumn(name = "poll_id")
+    @JoinColumn(name = "linked_poll_id")
     private Poll poll;
 }
-
-

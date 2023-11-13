@@ -1,6 +1,7 @@
 package VotingApp.vote;
 
 import VotingApp.poll.Poll;
+import VotingApp.poll.PollDAO;
 import VotingApp.user.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -15,10 +16,14 @@ public class VoteController {
     @Autowired
     private VoteDAO voteDAO;
 
+    @Autowired
+    private PollDAO pollDAO;
+
     @PostMapping("/vote")
     public ResponseEntity<Vote> addVote(@RequestBody Vote vote) {
         try {
             voteDAO.addVote(vote);
+            pollDAO.addGreenAndRedVotes(vote);
             return new ResponseEntity<>(vote, HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
@@ -117,6 +122,7 @@ public class VoteController {
     @DeleteMapping("/vote")
     public ResponseEntity<HttpStatus> deleteVote(@RequestBody Vote vote) {
         try {
+            pollDAO.deleteGreenAndRedVotes(vote);
             voteDAO.deleteVote(vote);
             return new ResponseEntity<>(HttpStatus.OK);
         } catch (Exception e) {

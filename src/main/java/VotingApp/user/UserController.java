@@ -1,5 +1,6 @@
 package VotingApp.user;
 
+import VotingApp.poll.Poll;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -47,6 +48,20 @@ public class UserController {
                 return new ResponseEntity<>(HttpStatus.NOT_FOUND);
             }
         } catch (Exception e) {
+            // Handle or log the error
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+    @GetMapping("/user/poll/{userid}")
+    public ResponseEntity<List<Poll>> getPollsByUser(@PathVariable Long userid){
+        try{
+            List<Poll> polls = userDAO.getPollsByUser(userid);
+            if(polls != null){
+                return new ResponseEntity<>(polls, HttpStatus.OK);
+            }else{
+                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            }
+        }catch(Exception e){
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }

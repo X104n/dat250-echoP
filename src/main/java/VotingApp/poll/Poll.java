@@ -21,9 +21,12 @@ public class Poll {
     private String question;
     private Timestamp startDateTime;
     private Timestamp endDateTime;
-    private Boolean isActive;
+    private Boolean isPublic;
     private String pollLink;
     private String pollCode;
+    private int redVotes;
+    private int greenVotes;
+
 
     @ManyToOne
     @JoinColumn(name = "created_by_user")
@@ -31,6 +34,21 @@ public class Poll {
 
     @OneToMany(mappedBy = "poll")
     private Collection<Vote> votes;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }
 
 

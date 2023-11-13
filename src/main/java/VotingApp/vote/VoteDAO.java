@@ -59,6 +59,6 @@ public class VoteDAO {
             voteToBeUpdated.setPoll(vote.getPoll());
             voteToBeUpdated.setUser(vote.getUser());
         }
-        entityManager.persist(vote);
+        entityManager.merge(vote);
     }
 }

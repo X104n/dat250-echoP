@@ -1,6 +1,6 @@
 package VotingApp.poll;
 
-import VotingApp.mqtt.MqttService;
+import VotingApp.vote.Vote;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.transaction.Transactional;
@@ -52,7 +52,7 @@ public class PollDAO {
                 poll.setQuestion(updatedPoll.getQuestion());
                 poll.setStartDateTime(updatedPoll.getStartDateTime());
                 poll.setEndDateTime(updatedPoll.getEndDateTime());
-                poll.setIsActive(updatedPoll.getIsActive());
+                poll.setIsPublic(updatedPoll.getIsPublic());
 
                 // Persist the changes to the database
                 entityManager.merge(poll);
@@ -94,4 +94,31 @@ public class PollDAO {
             // Handle any exceptions, e.g., database connection issues
         }
     }
+    public void addGreenAndRedVotes(Vote vote){
+        try{
+            Poll poll = vote.getPoll();
+            if(vote.getChoice().equals(Boolean.TRUE)){
+                poll.setGreenVotes(poll.getGreenVotes()+1);
+            }else if(vote.getChoice().equals(Boolean.FALSE)){
+                poll.setRedVotes(poll.getRedVotes()+1);
+            }
+            entityManager.merge(poll);
+        }catch(Exception e){
+            System.out.println(e);
+        }
+    }
+    public void deleteGreenAndRedVotes(Vote vote){
+        try{
+            Poll poll = vote.getPoll();
+            if(vote.getChoice().equals(Boolean.TRUE)){
+                poll.setGreenVotes(poll.getGreenVotes()-1);
+            }else if(vote.getChoice().equals(Boolean.FALSE)){
+                poll.setRedVotes(poll.getRedVotes()-1);
+            }
+            entityManager.merge(poll);
+        }catch(Exception e){
+            System.out.println(e);
+        }
+    }
+
 }
