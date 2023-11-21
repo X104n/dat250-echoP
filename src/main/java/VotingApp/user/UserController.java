@@ -1,6 +1,7 @@
 package VotingApp.user;
 
 import VotingApp.poll.Poll;
+import VotingApp.security.Hasher;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,9 +15,12 @@ public class UserController {
     @Autowired
     private UserDAO userDAO;
 
+
+
     @PostMapping("/user")
     public ResponseEntity<User> addUser(@RequestBody User user) {
         try {
+            user.setPassword(Hasher.toHexString(Hasher.getSHA(user.getPassword())));
             userDAO.addUser(user);
             return new ResponseEntity<>(user, HttpStatus.OK);
         } catch (Exception e) {
