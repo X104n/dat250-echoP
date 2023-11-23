@@ -2,11 +2,13 @@ package VotingApp.poll;
 
 import VotingApp.mqtt.MqttService;
 import VotingApp.dweet.DweetService; // Import the DweetService
+import jakarta.annotation.PostConstruct;
 import org.eclipse.paho.client.mqttv3.MqttException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
+import com.google.gson.Gson;
 
 import java.util.List;
 import java.util.HashMap;
@@ -62,10 +64,23 @@ public class PollService {
         }
     }
 
-    private String getPollResults(Poll poll) {
-        // Logic to format and return poll results as a String
-        // This could be a JSON representation or any other format suitable for your subscribers
-        String result = "Poll results for " + poll.getTitle() + "\n" + poll.getGreenVotes() + " green votes\n" + poll.getRedVotes() + " red votes";
-        return result;
+    @PostConstruct
+    public void init() {
+        try {
+            mqttService.subscribeToPollResults();
+        } catch (MqttException e) {
+            // Handle exception
+        }
     }
+
+    private String getPollResults(Poll poll) {
+        Gson gson = new Gson();
+        Map<String, Object> result = new HashMap<>();
+        result.put("pollTitle", poll.getTitle());
+        result.put("greenVotes", poll.getGreenVotes());
+        result.put("redVotes", poll.getRedVotes());
+
+        return gson.toJson(result);
+    }
+
 }
