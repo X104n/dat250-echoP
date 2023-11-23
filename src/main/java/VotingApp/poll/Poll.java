@@ -42,11 +42,6 @@ public class Poll {
 
 
 
-
-
-
-
-
 }
 
 
