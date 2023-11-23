@@ -10,6 +10,7 @@ import java.util.List;
 @Service
 public class UserDAO {
 
+
     @Autowired
     private EntityManager entityManager;
 
