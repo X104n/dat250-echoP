@@ -42,10 +42,10 @@ public class UserController {
         }
     }
 
-    @GetMapping("/user/{username}")
-    public ResponseEntity<User> getUserByUsername(@PathVariable String username) {
+    @GetMapping("/user/{name}")
+    public ResponseEntity<User> getUserByName(@PathVariable String name) {
         try {
-            User user = userDAO.getUserByUsername(username);
+            User user = userDAO.getUserByUsername(name);
             if (user != null) {
                 return new ResponseEntity<>(user, HttpStatus.OK);
             } else {
@@ -69,20 +69,29 @@ public class UserController {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-    @PutMapping("/update")
-    public String updateUser(@RequestBody User user) {
+    @PutMapping("/update/{name}")
+    public ResponseEntity<String> updateUser(@PathVariable String name, @RequestBody User updatedUser, @RequestHeader User currentUser) {
         try {
-            userDAO.updateUser(user);
-            return "User updated successfully!";
+            if (currentUser.getName().equals(name) || currentUser.getIsAdmin()) {
+                userDAO.updateUser(updatedUser);
+                return new ResponseEntity<>("User updated successfully!", HttpStatus.OK);
+            } else {
+                return new ResponseEntity<>("Permission denied", HttpStatus.FORBIDDEN);
+            }
         } catch (Exception e) {
-            return "Error: " + e.getMessage();
+            return new ResponseEntity<>("Error: " + e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-    @DeleteMapping("/delete/{username}")
-    public ResponseEntity<String> deleteUser(@PathVariable String username) {
+
+    @DeleteMapping("/delete/{name}")
+    public ResponseEntity<String> deleteUser(@PathVariable String name, @RequestHeader User currentUser) {
         try {
-            userDAO.deleteUser(username);
-            return new ResponseEntity<>("User deleted successfully!", HttpStatus.OK);
+            if (currentUser.getName().equals(name) || currentUser.getIsAdmin()) {
+                userDAO.deleteUser(name);
+                return new ResponseEntity<>("User deleted successfully!", HttpStatus.OK);
+            } else {
+                return new ResponseEntity<>("Permission denied", HttpStatus.FORBIDDEN);
+            }
         } catch (Exception e) {
             return new ResponseEntity<>("Error: " + e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
         }

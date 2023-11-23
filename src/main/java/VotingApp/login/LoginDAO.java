@@ -13,12 +13,15 @@ import java.security.Key;
 
 public class LoginDAO {
 
-    public String verifyUser(String username, String password) throws Exception {
+    public String verifyUser(String name, String password) throws Exception {
+        String hashed = Hasher.toHexString(Hasher.getSHA(password));
+        System.out.println("Name: " + name + " Password: " + password+ " Hashed: " + hashed);
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("VotingApp");
         EntityManager em = emf.createEntityManager();
-        String hashed = Hasher.toHexString(Hasher.getSHA(password));
-        TypedQuery<User> query = em.createQuery("SELECT u FROM User u WHERE u.name = :username AND u.password = :password", User.class);
-        query.setParameter("username", username);
+
+
+        TypedQuery<User> query = em.createQuery("SELECT u FROM User u WHERE u.name = :name AND u.password = :password", User.class);
+        query.setParameter("name", name);
         query.setParameter("password", hashed);
         User user = query.getSingleResult();
         em.close();
