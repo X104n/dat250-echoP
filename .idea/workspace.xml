@@ -4,13 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="56782435-d428-415b-b111-0e6b064276d4" name="Changes" comment="rettskriving">
-      <change afterPath="$PROJECT_DIR$/src/main/java/VotingApp/IotDevice/IoTController.java" afterDir="false" />
+    <list default="true" id="56782435-d428-415b-b111-0e6b064276d4" name="Changes" comment="iot and update login">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/VotingApp/IoTDevice.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/VotingApp/IotDevice/IoTDevice.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/VotingApp/poll/Poll.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/VotingApp/poll/Poll.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/VotingApp/poll/PollController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/VotingApp/poll/PollController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/VotingApp/poll/PollDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/VotingApp/poll/PollDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/VotingApp/vote/VoteController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/VotingApp/vote/VoteController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/VotingApp/user/UserDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/VotingApp/user/UserDAO.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -58,25 +58,25 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
-    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
-    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
-    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/magau/inf102_h_2023/retting_sem2&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "C:/Users/magau/OneDrive/Documents/inf234/dat250Project-main",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RunManager" selected="Spring Boot.VotingApp">
     <configuration name="PopulateTestData$VotingAppMain" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="VotingApp.driver.PopulateTestData$VotingAppMain" />
@@ -119,7 +119,9 @@
       <workItem from="1698828987138" duration="13077000" />
       <workItem from="1698934545768" duration="71000" />
       <workItem from="1699007452860" duration="3010000" />
-      <workItem from="1699708964750" duration="4654000" />
+      <workItem from="1699708964750" duration="8034000" />
+      <workItem from="1699874078014" duration="120000" />
+      <workItem from="1699874365790" duration="20526000" />
     </task>
     <task id="LOCAL−00001" summary="fjernet analytics og la til i poll.&#10;endret choice i vote til boolean">
       <option name="closed" value="true" />
@@ -142,7 +144,35 @@
       <option name="presentableId" value="LOCAL−00003" />
       <updated>1698836166123</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL−00004" summary="endring av poll og post request til iot device">
+      <option name="closed" value="true" />
+      <created>1699869336147</created>
+      <option name="number" value="LOCAL−00004" />
+      <option name="presentableId" value="LOCAL−00004" />
+      <updated>1699869336147</updated>
+    </task>
+    <task id="LOCAL−00005" summary="DES">
+      <option name="closed" value="true" />
+      <created>1700565045241</created>
+      <option name="number" value="LOCAL−00005" />
+      <option name="presentableId" value="LOCAL−00005" />
+      <updated>1700565045241</updated>
+    </task>
+    <task id="LOCAL−00006" summary="password hashing and login">
+      <option name="closed" value="true" />
+      <created>1700573600834</created>
+      <option name="number" value="LOCAL−00006" />
+      <option name="presentableId" value="LOCAL−00006" />
+      <updated>1700573600834</updated>
+    </task>
+    <task id="LOCAL−00007" summary="iot and update login">
+      <option name="closed" value="true" />
+      <created>1700744584909</created>
+      <option name="number" value="LOCAL−00007" />
+      <option name="presentableId" value="LOCAL−00007" />
+      <updated>1700744584909</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -165,6 +195,10 @@
     <MESSAGE value="fjernet analytics og la til i poll.&#10;endret choice i vote til boolean" />
     <MESSAGE value="la til getPollsByUser" />
     <MESSAGE value="rettskriving" />
-    <option name="LAST_COMMIT_MESSAGE" value="rettskriving" />
+    <MESSAGE value="endring av poll og post request til iot device" />
+    <MESSAGE value="DES" />
+    <MESSAGE value="password hashing and login" />
+    <MESSAGE value="iot and update login" />
+    <option name="LAST_COMMIT_MESSAGE" value="iot and update login" />
   </component>
 </project>
