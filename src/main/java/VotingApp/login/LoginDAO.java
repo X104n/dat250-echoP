@@ -13,15 +13,16 @@ import java.security.Key;
 
 public class LoginDAO {
 
-    public String verifyUser(String email, String password) throws Exception {
+    public String verifyUser(String username, String password) throws Exception {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("VotingApp");
         EntityManager em = emf.createEntityManager();
-        TypedQuery<User> query = em.createQuery("SELECT u FROM User u WHERE u.email = :email", User.class);
-        query.setParameter("email", email);
+        String hashed = Hasher.toHexString(Hasher.getSHA(password));
+        TypedQuery<User> query = em.createQuery("SELECT u FROM User u WHERE u.name = :username AND u.password = :password", User.class);
+        query.setParameter("username", username);
+        query.setParameter("password", hashed);
         User user = query.getSingleResult();
         em.close();
         emf.close();
-        String hashed = Hasher.toHexString(Hasher.getSHA(password));
         Key key = new AesKey(ByteUtil.randomBytes(16));
         JsonWebEncryption jwe = new JsonWebEncryption();
         jwe.setPayload(user.toString());
@@ -29,7 +30,7 @@ public class LoginDAO {
         jwe.setEncryptionMethodHeaderParameter(ContentEncryptionAlgorithmIdentifiers.AES_128_CBC_HMAC_SHA_256);
         jwe.setKey(key);
         String serializedJwe = jwe.getCompactSerialization();
-        if (hashed.equals(password)) return serializedJwe;
+        if (hashed.equals(user.getPassword())) return serializedJwe;
         else return null;
     }
 
