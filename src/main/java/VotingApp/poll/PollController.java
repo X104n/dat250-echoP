@@ -61,7 +61,7 @@ public class PollController {
             if (existingPoll == null) {
                 return new ResponseEntity<>("Poll not found", HttpStatus.NOT_FOUND);
             }
-            if (currentUser.getUsername().equals(existingPoll.getCreatedBy().getUsername()) || currentUser.getIsAdmin()) {
+            if (currentUser.getName().equals(existingPoll.getCreatedBy().getName()) || currentUser.getIsAdmin()) {
                 pollDAO.updatePoll(id, updatedPoll);
                 return new ResponseEntity<>("Poll updated successfully!", HttpStatus.OK);
             } else {
@@ -79,7 +79,7 @@ public class PollController {
             if (existingPoll == null) {
                 return new ResponseEntity<>("Poll not found", HttpStatus.NOT_FOUND);
             }
-            if (currentUser.getUsername().equals(existingPoll.getCreatedBy().getUsername()) || currentUser.getIsAdmin()) {
+            if (currentUser.getName().equals(existingPoll.getCreatedBy().getName()) || currentUser.getIsAdmin()) {
                 pollDAO.deletePollById(id);
                 return new ResponseEntity<>("Poll deleted successfully!", HttpStatus.OK);
             } else {

@@ -42,10 +42,10 @@ public class UserController {
         }
     }
 
-    @GetMapping("/user/{username}")
-    public ResponseEntity<User> getUserByUsername(@PathVariable String username) {
+    @GetMapping("/user/{name}")
+    public ResponseEntity<User> getUserByName(@PathVariable String name) {
         try {
-            User user = userDAO.getUserByUsername(username);
+            User user = userDAO.getUserByUsername(name);
             if (user != null) {
                 return new ResponseEntity<>(user, HttpStatus.OK);
             } else {
@@ -69,10 +69,10 @@ public class UserController {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-    @PutMapping("/update/{username}")
-    public ResponseEntity<String> updateUser(@PathVariable String username, @RequestBody User updatedUser, @RequestHeader User currentUser) {
+    @PutMapping("/update/{name}")
+    public ResponseEntity<String> updateUser(@PathVariable String name, @RequestBody User updatedUser, @RequestHeader User currentUser) {
         try {
-            if (currentUser.getUsername().equals(username) || currentUser.getIsAdmin()) {
+            if (currentUser.getName().equals(name) || currentUser.getIsAdmin()) {
                 userDAO.updateUser(updatedUser);
                 return new ResponseEntity<>("User updated successfully!", HttpStatus.OK);
             } else {
@@ -83,11 +83,11 @@ public class UserController {
         }
     }
 
-    @DeleteMapping("/delete/{username}")
-    public ResponseEntity<String> deleteUser(@PathVariable String username, @RequestHeader User currentUser) {
+    @DeleteMapping("/delete/{name}")
+    public ResponseEntity<String> deleteUser(@PathVariable String name, @RequestHeader User currentUser) {
         try {
-            if (currentUser.getUsername().equals(username) || currentUser.getIsAdmin()) {
-                userDAO.deleteUser(username);
+            if (currentUser.getName().equals(name) || currentUser.getIsAdmin()) {
+                userDAO.deleteUser(name);
                 return new ResponseEntity<>("User deleted successfully!", HttpStatus.OK);
             } else {
                 return new ResponseEntity<>("Permission denied", HttpStatus.FORBIDDEN);

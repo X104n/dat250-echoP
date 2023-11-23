@@ -23,10 +23,10 @@ public class UserDAO {
         return entityManager.createQuery("SELECT u FROM User u", User.class)
                 .getResultList();
     }
-    public User getUserByUsername(String username) {
+    public User getUserByUsername(String name) {
         try {
-            return entityManager.createQuery("SELECT u FROM User u WHERE u.username = :username", User.class)
-                    .setParameter("username", username)
+            return entityManager.createQuery("SELECT u FROM User u WHERE u.name = :name", User.class)
+                    .setParameter("name", name)
                     .getSingleResult();
         } catch(Exception e) {
             return null;
@@ -49,8 +49,8 @@ public class UserDAO {
         }
     }
     @Transactional
-    public void deleteUser(String username) throws Exception {
-        User user = getUserByUsername(username);
+    public void deleteUser(String name) throws Exception {
+        User user = getUserByUsername(name);
         if (user != null) {
             entityManager.remove(user);
         } else {
