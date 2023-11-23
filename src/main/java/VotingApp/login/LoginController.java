@@ -12,7 +12,7 @@ import java.util.Map;
 @RestController
 public class LoginController {
 
-    LoginDAO loginDAO = new LoginDAO();
+    private LoginDAO loginDAO;
 
     @PostMapping("/login")
     public ResponseEntity<Object> login(@RequestBody Map<String, Object> payload) {
@@ -21,7 +21,7 @@ public class LoginController {
 
             String login = loginDAO.verifyUser((String) payload.get("name"), (String) payload.get("password"));
             if (login != null) {
-                return new ResponseEntity<>(payload, HttpStatus.OK); //ResponseEntity.ok(login);
+                return new ResponseEntity<>(login, HttpStatus.OK); //ResponseEntity.ok(login);
             } else {
                 return new ResponseEntity<>("Error", HttpStatus.NOT_FOUND);//ResponseEntity.notFound().build();
             }

@@ -32,6 +32,15 @@ public class UserDAO {
             return null;
         }
     }
+    public List<User> getUsersByName(String name) {
+        try {
+            return entityManager.createQuery("SELECT u FROM User u WHERE u.name = :name", User.class)
+                    .setParameter("name", name)
+                    .getResultList();
+        } catch(Exception e) {
+            return null;
+        }
+    }
     public List<Poll> getPollsByUser(Long userid){
         try{
             return entityManager.createQuery("SELECT p FROM Poll p WHERE p.createdBy = :userid", Poll.class)
