@@ -8,12 +8,17 @@ import org.jose4j.jwe.JsonWebEncryption;
 import org.jose4j.jwe.KeyManagementAlgorithmIdentifiers;
 import org.jose4j.keys.AesKey;
 import org.jose4j.lang.ByteUtil;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.security.Key;
 import java.util.List;
 
 
+@Service
 public class LoginDAO {
+
+    @Autowired
     private UserDAO userDAO;
 
     public String verifyUser(String name, String password) throws Exception {
