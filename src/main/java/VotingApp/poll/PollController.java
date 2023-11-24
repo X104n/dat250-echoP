@@ -16,8 +16,9 @@ public class PollController {
     private PollDAO pollDAO;
 
     @PostMapping("/poll")
-    public ResponseEntity<Poll> addPoll(@RequestBody Poll poll) {
+    public ResponseEntity<Poll> addPoll(@RequestBody Poll poll, @RequestHeader("Authorization") String token) {
         try {
+            System.out.println("Token: " + token);
             pollDAO.addPoll(poll);
             return new ResponseEntity<>(poll, HttpStatus.OK);
         } catch (Exception e) {
