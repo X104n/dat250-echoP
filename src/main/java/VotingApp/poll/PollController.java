@@ -2,13 +2,18 @@ package VotingApp.poll;
 
 
 import VotingApp.security.JWS;
+import VotingApp.user.UserDAO;
 import VotingApp.vote.Vote;
 import VotingApp.user.User;
+import org.apache.tomcat.util.json.JSONParser;
+import org.h2.util.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 
 @RestController
 public class PollController {
@@ -19,11 +24,16 @@ public class PollController {
     @Autowired
     private JWS JWS;
 
+    @Autowired
+    private UserDAO userDAO;
+
     @PostMapping("/poll")
     public ResponseEntity<Poll> addPoll(@RequestBody Poll poll, @RequestHeader("Authorization") String token) {
         try {
-            System.out.println("Poll: " + poll);
-            System.out.println("Token: " + JWS.verify(token));
+            JsonObject jsonObject = new JsonParser().parse(token).getAsJsonObject();
+            String name = jsonObject.get("name").getAsString();
+            User user = userDAO.getUserByUsername(name);
+            poll.setCreatedBy(user);;
             pollDAO.addPoll(poll);
             return new ResponseEntity<>(poll, HttpStatus.OK);
         } catch (Exception e) {
