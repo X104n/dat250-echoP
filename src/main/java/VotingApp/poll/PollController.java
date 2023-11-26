@@ -1,6 +1,7 @@
 package VotingApp.poll;
 
 
+import VotingApp.security.JWS;
 import VotingApp.vote.Vote;
 import VotingApp.user.User;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,10 +16,14 @@ public class PollController {
     @Autowired
     private PollDAO pollDAO;
 
+    @Autowired
+    private JWS JWS;
+
     @PostMapping("/poll")
     public ResponseEntity<Poll> addPoll(@RequestBody Poll poll, @RequestHeader("Authorization") String token) {
         try {
-            System.out.println("Token: " + token);
+            System.out.println("Poll: " + poll);
+            System.out.println("Token: " + JWS.verify(token));
             pollDAO.addPoll(poll);
             return new ResponseEntity<>(poll, HttpStatus.OK);
         } catch (Exception e) {
