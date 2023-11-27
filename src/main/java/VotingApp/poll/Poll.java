@@ -27,6 +27,8 @@ public class Poll {
     private int redVotes;
     private int greenVotes;
     private Boolean isActive;
+    private Boolean isProcessed = false;
+
 
     protected int resultGreen(){
         return greenVotes;
