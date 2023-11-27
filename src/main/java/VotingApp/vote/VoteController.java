@@ -32,16 +32,15 @@ public class VoteController {
     @PostMapping("/vote")
     public ResponseEntity<Vote> addVote(@RequestBody Vote vote, @RequestHeader("Authorization") String token) {
         try {
-            if ((token == null || token.equals(""))&& vote.getPoll().getRequireLogin()) {
-                return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
-            }
-            if(token == null || token.equals("")){
-                voteDAO.addVote(vote);
-                pollDAO.addGreenAndRedVotes(vote);
-                return new ResponseEntity<>(vote, HttpStatus.OK);
-            }
+
             User user = JWS.getUserFromToken(token);
-            vote.setUser(user);
+            if (user == null) {
+                if(vote.getPoll().getRequireLogin())
+                    return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+            }
+            else {
+                vote.setUser(user);
+            }
             voteDAO.addVote(vote);
             pollDAO.addGreenAndRedVotes(vote);
             return new ResponseEntity<>(vote, HttpStatus.OK);
