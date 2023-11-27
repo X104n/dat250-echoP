@@ -38,7 +38,6 @@ public class Poll {
 
 
     @ManyToOne
-    @JoinColumn(name = "created_by_user")
     private User createdBy;
 
     @OneToMany(mappedBy = "poll")

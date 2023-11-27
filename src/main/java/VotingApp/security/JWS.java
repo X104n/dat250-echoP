@@ -31,7 +31,7 @@ public class JWS {
 
     public User getUserFromToken(String token) {
         if(token == null || token.equals("")) return null;
-        verify(token);
+        token = verify(token);
         JsonObject jsonObject = new JsonParser().parse(token).getAsJsonObject();
         String name = jsonObject.get("name").getAsString();
         User user = userDAO.getUserByUsername(name);

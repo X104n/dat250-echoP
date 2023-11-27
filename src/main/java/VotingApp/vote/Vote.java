@@ -17,10 +17,8 @@ public class Vote {
     private Boolean choice;
 
     @ManyToOne
-    @JoinColumn(name = "user_id")
     private User user;
 
     @ManyToOne
-    @JoinColumn(name = "poll_id")
     private Poll poll;
 }
