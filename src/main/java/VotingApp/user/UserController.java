@@ -2,6 +2,7 @@ package VotingApp.user;
 
 import VotingApp.poll.Poll;
 import VotingApp.security.Hasher;
+import VotingApp.security.JWS;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,6 +15,9 @@ public class UserController {
 
     @Autowired
     private UserDAO userDAO;
+
+    @Autowired
+    private JWS JWS;
 
 
 
@@ -70,8 +74,9 @@ public class UserController {
         }
     }
     @PutMapping("/update/{name}")
-    public ResponseEntity<String> updateUser(@PathVariable String name, @RequestBody User updatedUser, @RequestHeader User currentUser) {
+    public ResponseEntity<String> updateUser(@PathVariable String name, @RequestBody User updatedUser, @RequestHeader("Authorization") String token) {
         try {
+            User currentUser = JWS.getUserFromToken(token);
             if (currentUser.getName().equals(name) || currentUser.getIsAdmin()) {
                 userDAO.updateUser(updatedUser);
                 return new ResponseEntity<>("User updated successfully!", HttpStatus.OK);
@@ -84,8 +89,9 @@ public class UserController {
     }
 
     @DeleteMapping("/delete/{name}")
-    public ResponseEntity<String> deleteUser(@PathVariable String name, @RequestHeader User currentUser) {
+    public ResponseEntity<String> deleteUser(@PathVariable String name, @RequestHeader("Authorization") String token) {
         try {
+            User currentUser = JWS.getUserFromToken(token);
             if (currentUser.getName().equals(name) || currentUser.getIsAdmin()) {
                 userDAO.deleteUser(name);
                 return new ResponseEntity<>("User deleted successfully!", HttpStatus.OK);

@@ -30,9 +30,7 @@ public class PollController {
     @PostMapping("/poll")
     public ResponseEntity<Poll> addPoll(@RequestBody Poll poll, @RequestHeader("Authorization") String token) {
         try {
-            JsonObject jsonObject = new JsonParser().parse(token).getAsJsonObject();
-            String name = jsonObject.get("name").getAsString();
-            User user = userDAO.getUserByUsername(name);
+            User user = JWS.getUserFromToken(token);
             poll.setCreatedBy(user);;
             pollDAO.addPoll(poll);
             return new ResponseEntity<>(poll, HttpStatus.OK);
@@ -71,8 +69,9 @@ public class PollController {
     }
 
     @PutMapping("/poll/{id}")
-    public ResponseEntity<String> updatePoll(@PathVariable Long id, @RequestBody Poll updatedPoll, @RequestHeader User currentUser) {
+    public ResponseEntity<String> updatePoll(@PathVariable Long id, @RequestBody Poll updatedPoll, @RequestHeader("Authorization") String token) {
         try {
+            User currentUser = JWS.getUserFromToken(token);
             Poll existingPoll = pollDAO.getPollById(id);
             if (existingPoll == null) {
                 return new ResponseEntity<>("Poll not found", HttpStatus.NOT_FOUND);
@@ -89,8 +88,9 @@ public class PollController {
     }
 
     @DeleteMapping("/poll/{id}")
-    public ResponseEntity<String> deletePollById(@PathVariable Long id, @RequestHeader User currentUser) {
+    public ResponseEntity<String> deletePollById(@PathVariable Long id, @RequestHeader("Authorization") String token) {
         try {
+            User currentUser = JWS.getUserFromToken(token);
             Poll existingPoll = pollDAO.getPollById(id);
             if (existingPoll == null) {
                 return new ResponseEntity<>("Poll not found", HttpStatus.NOT_FOUND);

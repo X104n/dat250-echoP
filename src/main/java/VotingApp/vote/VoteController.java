@@ -3,6 +3,10 @@ package VotingApp.vote;
 import VotingApp.poll.Poll;
 import VotingApp.poll.PollDAO;
 import VotingApp.user.User;
+import VotingApp.user.UserDAO;
+import VotingApp.security.JWS;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,9 +23,25 @@ public class VoteController {
     @Autowired
     private PollDAO pollDAO;
 
+    @Autowired
+    private UserDAO userDAO;
+
+    @Autowired
+    private JWS JWS;
+
     @PostMapping("/vote")
-    public ResponseEntity<Vote> addVote(@RequestBody Vote vote) {
+    public ResponseEntity<Vote> addVote(@RequestBody Vote vote, @RequestHeader("Authorization") String token) {
         try {
+            if ((token == null || token.equals(""))&& vote.getPoll().getRequireLogin()) {
+                return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+            }
+            if(token == null || token.equals("")){
+                voteDAO.addVote(vote);
+                pollDAO.addGreenAndRedVotes(vote);
+                return new ResponseEntity<>(vote, HttpStatus.OK);
+            }
+            User user = JWS.getUserFromToken(token);
+            vote.setUser(user);
             voteDAO.addVote(vote);
             pollDAO.addGreenAndRedVotes(vote);
             return new ResponseEntity<>(vote, HttpStatus.OK);
@@ -31,11 +51,15 @@ public class VoteController {
     }
 
     @PutMapping("/vote/{id}")
-    public ResponseEntity<String> updateVote(@PathVariable Long id, @RequestBody Vote updatedVote, @RequestHeader User currentUser) {
+    public ResponseEntity<String> updateVote(@PathVariable Long id, @RequestBody Vote updatedVote, @RequestHeader("Authorization") String token) {
         try {
+            User currentUser = JWS.getUserFromToken(token);
             Vote existingVote = voteDAO.getVoteById(id);
             if (existingVote == null) {
                 return new ResponseEntity<>("Vote not found", HttpStatus.NOT_FOUND);
+            }
+            if (currentUser == null){
+                return new ResponseEntity<>("Permission denied", HttpStatus.FORBIDDEN);
             }
             if (currentUser.getUserID().equals(existingVote.getUser().getUserID()) || currentUser.getIsAdmin()) {
                 voteDAO.updateVote(updatedVote);
@@ -103,11 +127,15 @@ public class VoteController {
         }
     }
     @DeleteMapping("/vote/{id}")
-    public ResponseEntity<String> deleteVoteById(@PathVariable Long id, @RequestHeader User currentUser) {
+    public ResponseEntity<String> deleteVoteById(@PathVariable Long id, @RequestHeader("Authorization") String token) {
         try {
+            User currentUser = JWS.getUserFromToken(token);
             Vote existingVote = voteDAO.getVoteById(id);
             if (existingVote == null) {
                 return new ResponseEntity<>("Vote not found", HttpStatus.NOT_FOUND);
+            }
+            if (currentUser == null){
+                return new ResponseEntity<>("Permission denied", HttpStatus.FORBIDDEN);
             }
             if (currentUser.getUserID().equals(existingVote.getUser().getUserID()) || currentUser.getIsAdmin()) {
                 voteDAO.deleteVoteById(id);
