@@ -2,8 +2,11 @@ package VotingApp.security;
 
 import VotingApp.user.User;
 import VotingApp.user.UserDAO;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.MacAlgorithm;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,9 +35,19 @@ public class JWS {
     public User getUserFromToken(String token) {
         if(token == null || token.equals("")) return null;
         token = verify(token);
-        JsonObject jsonObject = new JsonParser().parse(token).getAsJsonObject();
-        String name = jsonObject.get("name").getAsString();
-        User user = userDAO.getUserByUsername(name);
-        return user;
+        try {
+            ObjectMapper mapper = new ObjectMapper();
+            JsonNode jsonNode = mapper.readTree(token);
+            String name = jsonNode.get("name").asText();
+            User user = userDAO.getUserByUsername(name);
+            return user;
+        }
+        catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 }

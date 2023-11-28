@@ -22,6 +22,7 @@ public class IoTController {
     @PostMapping("/iot")
     public ResponseEntity<Vote> addVote(@RequestBody Vote vote) {
         try {
+            System.out.println(vote.getChoice());
             voteDAO.addVote(vote);
             return new ResponseEntity<>(vote, HttpStatus.OK);
         } catch (Exception e) {
@@ -31,6 +32,7 @@ public class IoTController {
     @PostMapping("/iot/{id}")
     public void addVote(@PathVariable Long id, @RequestBody boolean choice) {
         try {
+            System.out.println(choice);
             pollDAO.addGreenAndRedVotes(id, choice);
         } catch (Exception e) {
             System.out.println("Error: " + e.getMessage());

@@ -2,6 +2,7 @@ package VotingApp.vote;
 
 import VotingApp.poll.Poll;
 import VotingApp.user.User;
+import com.fasterxml.jackson.annotation.JsonIncludeProperties;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -17,8 +18,10 @@ public class Vote {
     private Boolean choice;
 
     @ManyToOne
+    @JsonIncludeProperties("name")
     private User user;
 
     @ManyToOne
+    @JsonIncludeProperties("id")
     private Poll poll;
 }

@@ -5,8 +5,6 @@ import VotingApp.poll.PollDAO;
 import VotingApp.user.User;
 import VotingApp.user.UserDAO;
 import VotingApp.security.JWS;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
