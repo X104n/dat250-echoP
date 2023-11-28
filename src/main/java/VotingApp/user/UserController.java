@@ -60,10 +60,11 @@ public class UserController {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-    @GetMapping("/user/poll/{userid}")
-    public ResponseEntity<List<Poll>> getPollsByUser(@PathVariable Long userid){
+    @GetMapping("/user/poll")
+    public ResponseEntity<List<Poll>> getPollsByUser(@RequestHeader("Authorization") String token){
         try{
-            List<Poll> polls = userDAO.getPollsByUser(userid);
+            User user = JWS.getUserFromToken(token);
+            List<Poll> polls = userDAO.getPollsByUser(user);
             if(polls != null){
                 return new ResponseEntity<>(polls, HttpStatus.OK);
             }else{

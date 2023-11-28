@@ -41,8 +41,9 @@ public class UserDAO {
             return null;
         }
     }
-    public List<Poll> getPollsByUser(Long userid){
+    public List<Poll> getPollsByUser(User user){
         try{
+            Long userid = user.getUserID();
             return entityManager.createQuery("SELECT p FROM Poll p WHERE p.createdBy = :userid", Poll.class)
                     .setParameter("userid", userid)
                     .getResultList();
