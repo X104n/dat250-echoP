@@ -80,7 +80,7 @@ public class PollDAO {
     }
 
 
-
+    @Transactional
     public void deletePoll(Poll poll) {
         try {
             entityManager.remove(poll);
