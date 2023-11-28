@@ -96,7 +96,7 @@ public class PollController {
                 return new ResponseEntity<>("Poll not found", HttpStatus.NOT_FOUND);
             }
             if (currentUser.getName().equals(existingPoll.getCreatedBy().getName()) || currentUser.getIsAdmin()) {
-                pollDAO.deletePollById(id);
+                pollDAO.deletePoll(existingPoll);
                 return new ResponseEntity<>("Poll deleted successfully!", HttpStatus.OK);
             } else {
                 return new ResponseEntity<>("Permission denied", HttpStatus.FORBIDDEN);

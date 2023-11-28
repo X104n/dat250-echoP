@@ -81,18 +81,11 @@ public class PollDAO {
 
 
 
-    public void deletePollById(Long id) {
+    public void deletePoll(Poll poll) {
         try {
-            // Find the Poll entity by its ID
-            Poll poll = entityManager.find(Poll.class, id);
-
-            if (poll != null) {
-                // If the Poll exists, remove it from the database
-                entityManager.remove(poll);
-            }
-            // No need to handle the case where the poll is not found since it's void
+            entityManager.remove(poll);
         } catch (Exception e) {
-            // Handle any exceptions, e.g., database connection issues
+            System.out.println(e);
         }
     }
     public void addGreenAndRedVotes(Vote vote){
