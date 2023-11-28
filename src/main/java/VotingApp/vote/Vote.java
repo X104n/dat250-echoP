@@ -18,10 +18,12 @@ public class Vote {
     private Boolean choice;
 
     @ManyToOne
+    @JoinColumn(name = "name")
     @JsonIncludeProperties("name")
     private User user;
 
     @ManyToOne
+    @JoinColumn(name = "id")
     @JsonIncludeProperties("id")
     private Poll poll;
 }
