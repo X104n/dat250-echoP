@@ -64,7 +64,7 @@ public class UserController {
     public ResponseEntity<List<Poll>> getPollsByUser(@RequestHeader("Authorization") String token){
         try{
             User user = JWS.getUserFromToken(token);
-            List<Poll> polls = userDAO.getPollsByUser(user.getName());
+            List<Poll> polls = userDAO.getPollsByUser(user.getUserID());
             if(polls != null){
                 return new ResponseEntity<>(polls, HttpStatus.OK);
             }else{
