@@ -39,8 +39,8 @@ public class Poll {
 
 
     @ManyToOne
-    @JoinColumn(name = "userID")
-    @JsonIncludeProperties({"userID","name"})
+    @JoinColumn(name = "name")
+    @JsonIncludeProperties("name")
     private User createdBy;
 
     @OneToMany(mappedBy = "poll")
