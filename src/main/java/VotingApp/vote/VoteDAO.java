@@ -47,10 +47,12 @@ public class VoteDAO {
         }
     }
 
+    @Transactional
     public void deleteVote(Vote vote) {
         entityManager.remove(vote);
     }
 
+    @Transactional
     public void updateVote(Vote vote) {
         Long id = vote.getVoteID();
         Vote voteToBeUpdated = getVoteById(id);

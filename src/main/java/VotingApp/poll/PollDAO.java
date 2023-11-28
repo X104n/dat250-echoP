@@ -89,6 +89,8 @@ public class PollDAO {
             System.out.println(e);
         }
     }
+
+    @Transactional
     public void addGreenAndRedVotes(Vote vote){
         try{
             Poll poll = vote.getPoll();
@@ -102,6 +104,8 @@ public class PollDAO {
             System.out.println(e);
         }
     }
+
+    @Transactional
     public void deleteGreenAndRedVotes(Vote vote){
         try{
             Poll poll = vote.getPoll();
@@ -115,6 +119,8 @@ public class PollDAO {
             System.out.println(e);
         }
     }
+
+    @Transactional
     public void addGreenAndRedVotes(Long id, Boolean choice){
         try{
             Poll poll = getPollById(id);
