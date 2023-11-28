@@ -86,9 +86,10 @@ public class PollController {
         }
     }
 
-    @DeleteMapping("/poll/{id}")
-    public ResponseEntity<String> deletePollById(@PathVariable Long id, @RequestHeader("Authorization") String token) {
+    @DeleteMapping("/poll")
+    public ResponseEntity<String> deletePollById(@RequestHeader("Authorization") String token, @RequestBody Poll poll) {
         try {
+            Long id = poll.getId();
             User currentUser = JWS.getUserFromToken(token);
             Poll existingPoll = pollDAO.getPollById(id);
             if (existingPoll == null) {
