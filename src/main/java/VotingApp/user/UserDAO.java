@@ -43,8 +43,8 @@ public class UserDAO {
     }
     public List<Poll> getPollsByUser(String userid){
         try{
-            return entityManager.createQuery("SELECT p FROM Poll p WHERE p.createdBy = :userid", Poll.class)
-                    .setParameter("userid", userid)
+            return entityManager.createQuery("SELECT p FROM Poll p WHERE p.createdBy = :name", Poll.class)
+                    .setParameter("name", userid)
                     .getResultList();
         }catch(Exception e){
             return null;
