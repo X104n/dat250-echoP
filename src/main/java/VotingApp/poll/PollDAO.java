@@ -42,6 +42,7 @@ public class PollDAO {
                     .getResultList();
     }
 
+    @Transactional
     public void updatePoll(Long pollId, Poll updatedPoll) {
         try {
             // Find the Poll entity by its ID

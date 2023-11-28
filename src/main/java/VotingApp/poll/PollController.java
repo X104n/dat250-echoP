@@ -67,9 +67,10 @@ public class PollController {
         }
     }
 
-    @PutMapping("/poll/{id}")
-    public ResponseEntity<String> updatePoll(@PathVariable Long id, @RequestBody Poll updatedPoll, @RequestHeader("Authorization") String token) {
+    @PutMapping("/poll")
+    public ResponseEntity<String> updatePoll(@RequestBody Poll updatedPoll, @RequestHeader("Authorization") String token) {
         try {
+            Long id = updatedPoll.getId();
             User currentUser = JWS.getUserFromToken(token);
             Poll existingPoll = pollDAO.getPollById(id);
             if (existingPoll == null) {
