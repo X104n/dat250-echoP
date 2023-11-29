@@ -107,7 +107,7 @@ public class PollDAO {
         }
     }
 
-    @Transactional
+
     public void deleteGreenAndRedVotes(Vote vote){
         try{
             Poll poll = vote.getPoll();
