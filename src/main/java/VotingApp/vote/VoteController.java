@@ -56,17 +56,22 @@ public class VoteController {
     @PutMapping("/vote")
     public ResponseEntity<String> updateVote(@RequestBody Vote updatedVote, @RequestHeader("Authorization") String token) {
         try {
-            long id = updatedVote.getVoteID();
             User currentUser = JWS.getUserFromToken(token);
-            Vote existingVote = voteDAO.getVoteById(id);
+            Poll poll = pollDAO.getPollById(updatedVote.getPoll().getId());
+            Vote existingVote = null;
+            for (Vote v : poll.getVotes()) {
+                if (v.getUser().getUserID().equals(currentUser.getUserID())) {
+                    existingVote = v;
+                }
+            }
             if (existingVote == null) {
                 return new ResponseEntity<>("Vote not found", HttpStatus.NOT_FOUND);
             }
-            if (currentUser == null){
+            if (currentUser == null) {
                 return new ResponseEntity<>("Permission denied", HttpStatus.FORBIDDEN);
             }
             if (currentUser.getUserID().equals(existingVote.getUser().getUserID()) || currentUser.getIsAdmin()) {
-                voteDAO.updateVote(updatedVote);
+                voteDAO.updateVote(existingVote.getVoteID(), updatedVote.getChoice());
                 return new ResponseEntity<>("Vote updated successfully!", HttpStatus.OK);
             } else {
                 return new ResponseEntity<>("Permission denied", HttpStatus.FORBIDDEN);

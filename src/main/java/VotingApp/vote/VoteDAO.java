@@ -53,14 +53,9 @@ public class VoteDAO {
     }
 
     @Transactional
-    public void updateVote(Vote vote) {
-        Long id = vote.getVoteID();
-        Vote voteToBeUpdated = getVoteById(id);
-        if (voteToBeUpdated != null) {
-            voteToBeUpdated.setChoice(vote.getChoice());
-            voteToBeUpdated.setPoll(vote.getPoll());
-            voteToBeUpdated.setUser(vote.getUser());
-        }
+    public void updateVote(Long id, Boolean choice) {
+        Vote vote = getVoteById(id);
+        vote.setChoice(choice);
         entityManager.merge(vote);
     }
 }
