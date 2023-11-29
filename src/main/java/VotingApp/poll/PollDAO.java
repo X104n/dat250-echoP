@@ -137,4 +137,19 @@ public class PollDAO {
         }
     }
 
+    @Transactional
+    public void deleteGreenAndRedVotes(Long id, Boolean choice){
+        try{
+            Poll poll = getPollById(id);
+            if(choice){
+                poll.setGreenVotes(poll.getGreenVotes()-1);
+            }else if(choice.equals(Boolean.FALSE)){
+                poll.setRedVotes(poll.getRedVotes()-1);
+            }
+            entityManager.merge(poll);
+        }catch(Exception e){
+            System.out.println(e);
+        }
+    }
+
 }

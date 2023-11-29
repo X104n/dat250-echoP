@@ -1,6 +1,7 @@
 package VotingApp.vote;
 
 import VotingApp.poll.Poll;
+import VotingApp.poll.PollDAO;
 import VotingApp.user.User;
 import jakarta.persistence.EntityManager;
 import jakarta.transaction.Transactional;
@@ -13,6 +14,9 @@ public class VoteDAO {
 
     @Autowired
     private EntityManager entityManager;
+
+    @Autowired
+    private PollDAO pollDAO;
 
     @Transactional
     public void addVote(Vote vote) {
@@ -55,6 +59,8 @@ public class VoteDAO {
     @Transactional
     public void updateVote(Long id, Boolean choice) {
         Vote vote = getVoteById(id);
+        pollDAO.addGreenAndRedVotes(vote.getVoteID(), choice);
+        pollDAO.deleteGreenAndRedVotes(vote.getVoteID(), vote.getChoice());
         vote.setChoice(choice);
         entityManager.merge(vote);
     }
