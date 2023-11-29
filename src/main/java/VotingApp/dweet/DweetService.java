@@ -1,15 +1,30 @@
 package VotingApp.dweet;
 
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 @Service
 public class DweetService {
 
-    private RestTemplate restTemplate = new RestTemplate();
+    private final RestTemplate restTemplate = new RestTemplate();
 
-    public void sendDweet(String pollName, Object data) {
+    public String sendDweet(String pollName, String jsonData) {
         String dweetUrl = "https://dweet.io/dweet/for/" + pollName;
-        restTemplate.postForObject(dweetUrl, data, String.class);
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+
+        HttpEntity<String> entity = new HttpEntity<>(jsonData, headers);
+
+        try {
+            // Send the request and receive the response
+            return restTemplate.postForObject(dweetUrl, entity, String.class);
+        } catch (Exception e) {
+            // Log the exception
+            return "Failed to send dweet: " + e.getMessage();
+        }
     }
 }

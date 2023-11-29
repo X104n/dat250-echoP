@@ -7,12 +7,15 @@ import org.eclipse.paho.client.mqttv3.MqttClient;
 import org.eclipse.paho.client.mqttv3.MqttConnectOptions;
 import org.eclipse.paho.client.mqttv3.MqttException;
 import org.eclipse.paho.client.mqttv3.MqttMessage;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class MqttService implements MqttCallback {
 
     private final MqttClient mqttClient;
+    @Autowired
+    private VotingApp.db.MongoDBService mongoDBService; // MongoDB Service
 
     public MqttService() throws MqttException {
         String brokerUrl = "ssl://27f7f176f6cf4168a91e2826d5207e77.s1.eu.hivemq.cloud:8883";
@@ -23,7 +26,6 @@ public class MqttService implements MqttCallback {
         options.setCleanSession(true);
         options.setConnectionTimeout(10);
 
-        // Set the username and password if your HiveMQ Cloud instance requires authentication
         options.setUserName("echoP");
         options.setPassword("Dat250hvl".toCharArray());
 
@@ -39,6 +41,19 @@ public class MqttService implements MqttCallback {
         MqttMessage message = new MqttMessage(payload.getBytes());
         mqttClient.publish(topic, message);
     }
+
+    public void subscribeToPollResults() throws MqttException {
+        if (!mqttClient.isConnected()) {
+            reconnect();
+        }
+        mqttClient.subscribe("polls/results", this::processPollResult);
+    }
+
+    private void processPollResult(String topic, MqttMessage message) {
+        String pollResult = new String(message.getPayload());
+        mongoDBService.insertPollResult(pollResult); // Store in MongoDB
+    }
+
 
     private void reconnect() {
         try {
@@ -68,3 +83,4 @@ public class MqttService implements MqttCallback {
         mqttClient.disconnect();
     }
 }
+

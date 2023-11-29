@@ -45,26 +45,24 @@ public class PollDAO {
     @Transactional
     public void updatePoll(Long pollId, Poll updatedPoll) {
         try {
-            // Find the Poll entity by its ID
             Poll poll = entityManager.find(Poll.class, pollId);
 
             if (poll != null) {
-                // Update the properties using the updatedPoll object
                 poll.setTitle(updatedPoll.getTitle());
                 poll.setQuestion(updatedPoll.getQuestion());
                 poll.setStartDate(updatedPoll.getStartDate());
                 poll.setEndDate(updatedPoll.getEndDate());
                 poll.setRequireLogin(updatedPoll.getRequireLogin());
+                poll.setIsActive(updatedPoll.getIsActive());
+                poll.setIsProcessed(updatedPoll.getIsProcessed());
 
-                // Persist the changes to the database
                 entityManager.merge(poll);
             }
-            // You can choose to handle the case where the Poll is not found,
-            // but in a void method, you may decide not to take any specific action.
         } catch (Exception e) {
-            // Handle any exceptions, e.g., database connection issues, or log them
+            // Handle exceptions
         }
     }
+
 
     public List<Poll> getPollsToActivate() {
         Timestamp currentTimestamp = new Timestamp(System.currentTimeMillis());
