@@ -24,7 +24,7 @@ public class UserController {
     @PostMapping("/user")
     public ResponseEntity<User> addUser(@RequestBody User user) {
         try {
-            user.setPassword(Hasher.toHexString(Hasher.getSHA(user.getPassword())));
+            user.setPassword(Hasher.toHexString(Hasher.getSHA(user.getPassword()+user.getName())));
             userDAO.addUser(user);
             return new ResponseEntity<>(user, HttpStatus.OK);
         } catch (Exception e) {

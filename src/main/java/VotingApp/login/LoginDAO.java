@@ -29,7 +29,7 @@ public class LoginDAO {
 
 
     public String verifyUser(String name, String password) throws Exception {
-        String hashed = Hasher.toHexString(Hasher.getSHA(password));
+        String hashed = Hasher.toHexString(Hasher.getSHA(password+name));
         List<User> users = userDAO.getUsersByName(name);
         User theOne = null;
         for (User user : users) {

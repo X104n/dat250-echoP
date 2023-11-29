@@ -28,10 +28,7 @@ public class Hasher {
         StringBuilder hexString = new StringBuilder(number.toString(16));
 
         // Pad with leading zeros
-        while (hexString.length() < 64)
-        {
-            hexString.insert(0, '0');
-        }
+        while (hexString.length() < 64) hexString.insert(0, '0');
 
         return hexString.toString();
     }
