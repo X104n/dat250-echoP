@@ -93,7 +93,7 @@ public class PollDAO {
     @Transactional
     public void addGreenAndRedVotes(Vote vote){
         try{
-            Poll poll = vote.getPoll();
+            Poll poll = getPollById(vote.getPoll().getId());
             if(vote.getChoice().equals(Boolean.TRUE)){
                 poll.setGreenVotes(poll.getGreenVotes()+1);
             }else if(vote.getChoice().equals(Boolean.FALSE)){
