@@ -54,7 +54,7 @@ public class VoteController {
     }
 
     @PutMapping("/vote")
-    public ResponseEntity<String> updateVote(@RequestBody Vote updatedVote, @RequestHeader("Authorization") String token) {
+    public ResponseEntity<String> updateVote(@RequestBody Vote updatedVote, @RequestHeader("Authorization") String token) {//vote contains poll and choice
         try {
             User currentUser = JWS.getUserFromToken(token);
             Poll poll = pollDAO.getPollById(updatedVote.getPoll().getId());

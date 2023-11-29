@@ -59,8 +59,9 @@ public class VoteDAO {
     @Transactional
     public void updateVote(Long id, Boolean choice) {
         Vote vote = getVoteById(id);
-        pollDAO.addGreenAndRedVotes(vote.getVoteID(), choice);
-        pollDAO.deleteGreenAndRedVotes(vote.getVoteID(), vote.getChoice());
+        Poll poll = vote.getPoll();
+        pollDAO.addGreenAndRedVotes(poll.getId(), choice);
+        pollDAO.deleteGreenAndRedVotes(poll.getId(), vote.getChoice());
         vote.setChoice(choice);
         entityManager.merge(vote);
     }
