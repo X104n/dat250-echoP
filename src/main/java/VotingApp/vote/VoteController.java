@@ -53,9 +53,10 @@ public class VoteController {
         }
     }
 
-    @PutMapping("/vote/{id}")
-    public ResponseEntity<String> updateVote(@PathVariable Long id, @RequestBody Vote updatedVote, @RequestHeader("Authorization") String token) {
+    @PutMapping("/vote")
+    public ResponseEntity<String> updateVote(@RequestBody Vote updatedVote, @RequestHeader("Authorization") String token) {
         try {
+            long id = updatedVote.getVoteID();
             User currentUser = JWS.getUserFromToken(token);
             Vote existingVote = voteDAO.getVoteById(id);
             if (existingVote == null) {
