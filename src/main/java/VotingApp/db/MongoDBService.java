@@ -14,7 +14,7 @@ public class MongoDBService {
     private MongoClient mongoClient;
     private MongoDatabase database;
 
-    public MongoDBService(@Value("${mongodb.connectionString}") String connectionString, @Value("${mongodb.dbName}") String dbName) {
+    public MongoDBService(@Value("mongodb://localhost:27017") String connectionString, @Value("feedapp") String dbName) {
         mongoClient = MongoClients.create(connectionString);
         database = mongoClient.getDatabase(dbName);
     }
@@ -24,6 +24,4 @@ public class MongoDBService {
         Document doc = Document.parse(pollResult);
         collection.insertOne(doc);
     }
-
-    // add methods to read or update data
 }

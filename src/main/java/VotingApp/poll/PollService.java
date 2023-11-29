@@ -43,7 +43,7 @@ public class PollService {
             dweetService.sendDweet("my_poll_event_" + poll.getId(), jsonData);
         }
     }
-
+    @Scheduled(fixedRate = 60000)
     // Method to close expired polls and publish results
     public void closeExpiredPolls() {
         List<Poll> pollsToClose = pollDAO.getPollsToEnd();
