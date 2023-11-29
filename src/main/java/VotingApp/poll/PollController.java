@@ -33,8 +33,10 @@ public class PollController {
     public ResponseEntity<Poll> addPoll(@RequestBody Poll poll, @RequestHeader("Authorization") String token) {
         try {
             User user = JWS.getUserFromToken(token);
+            if (user == null) {
+                return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+            }
             poll.setCreatedBy(user);
-            ;
             pollDAO.addPoll(poll);
             return new ResponseEntity<>(poll, HttpStatus.OK);
         } catch (Exception e) {
