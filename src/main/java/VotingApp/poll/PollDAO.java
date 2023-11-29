@@ -84,6 +84,9 @@ public class PollDAO {
     @Transactional
     public void deletePoll(Poll poll) {
         try {
+            for (Vote vote : poll.getVotes()) {
+                entityManager.remove(vote);
+            }
             entityManager.remove(poll);
         } catch (Exception e) {
             System.out.println(e);
