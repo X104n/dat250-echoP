@@ -1,14 +1,15 @@
 package VotingApp.user;
 
+import VotingApp.poll.Poll;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import jakarta.persistence.EntityManager;
-
 import java.util.List;
 
 @Service
 public class UserDAO {
+
 
     @Autowired
     private EntityManager entityManager;
@@ -22,16 +23,34 @@ public class UserDAO {
         return entityManager.createQuery("SELECT u FROM User u", User.class)
                 .getResultList();
     }
-
-    public User getUserByUsername(String username) {
+    public User getUserByUsername(String name) {
         try {
-            return entityManager.createQuery("SELECT u FROM User u WHERE u.name = :username", User.class)
-                    .setParameter("username", username)
+            return entityManager.createQuery("SELECT u FROM User u WHERE u.name = :name", User.class)
+                    .setParameter("name", name)
                     .getSingleResult();
         } catch(Exception e) {
             return null;
         }
     }
+    public List<User> getUsersByName(String name) {
+        try {
+            return entityManager.createQuery("SELECT u FROM User u WHERE u.name = :name", User.class)
+                    .setParameter("name", name)
+                    .getResultList();
+        } catch(Exception e) {
+            return null;
+        }
+    }
+    public List<Poll> getPollsByUser(Long userid){
+        try{
+            return entityManager.createQuery("SELECT p FROM Poll p WHERE p.createdBy.id = :userid", Poll.class)
+                    .setParameter("userid", userid)
+                    .getResultList();
+        }catch(Exception e){
+            return null;
+        }
+    }
+
     @Transactional
     public void updateUser(User user) {
         if (entityManager != null) {
@@ -39,8 +58,8 @@ public class UserDAO {
         }
     }
     @Transactional
-    public void deleteUser(String username) throws Exception {
-        User user = getUserByUsername(username);
+    public void deleteUser(String name) throws Exception {
+        User user = getUserByUsername(name);
         if (user != null) {
             entityManager.remove(user);
         } else {

@@ -1,6 +1,8 @@
 package VotingApp.user;
 
 import VotingApp.poll.Poll;
+import VotingApp.vote.Vote;
+import com.fasterxml.jackson.annotation.JsonIncludeProperties;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -24,5 +26,10 @@ public class User {
     private Boolean isAdmin;
 
     @OneToMany(mappedBy = "createdBy")
+    @JsonIncludeProperties("id")
     private Collection<Poll> polls = new ArrayList<>();
+
+    @OneToMany(mappedBy = "user")
+    @JsonIncludeProperties("voteID")
+    private Collection<Vote> votes = new ArrayList<>();
 }

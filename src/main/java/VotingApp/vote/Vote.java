@@ -2,6 +2,7 @@ package VotingApp.vote;
 
 import VotingApp.poll.Poll;
 import VotingApp.user.User;
+import com.fasterxml.jackson.annotation.JsonIncludeProperties;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -14,13 +15,15 @@ public class Vote {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long voteID;
 
-    private String choice;
+    private Boolean choice;
 
     @ManyToOne
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "name")
+    @JsonIncludeProperties("name")
     private User user;
 
     @ManyToOne
-    @JoinColumn(name = "poll_id")
+    @JoinColumn(name = "id")
+    @JsonIncludeProperties("id")
     private Poll poll;
 }

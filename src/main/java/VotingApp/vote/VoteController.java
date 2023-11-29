@@ -1,7 +1,10 @@
 package VotingApp.vote;
 
 import VotingApp.poll.Poll;
+import VotingApp.poll.PollDAO;
 import VotingApp.user.User;
+import VotingApp.user.UserDAO;
+import VotingApp.security.JWS;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,23 +18,54 @@ public class VoteController {
     @Autowired
     private VoteDAO voteDAO;
 
+    @Autowired
+    private PollDAO pollDAO;
+
+    @Autowired
+    private UserDAO userDAO;
+
+    @Autowired
+    private JWS JWS;
+
     @PostMapping("/vote")
-    public ResponseEntity<Vote> addVote(@RequestBody Vote vote) {
+    public ResponseEntity<Vote> addVote(@RequestBody Vote vote, @RequestHeader("Authorization") String token) {
         try {
+
+            User user = JWS.getUserFromToken(token);
+            if (user == null) {
+                if(vote.getPoll().getRequireLogin())
+                    return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+            }
+            else {
+                vote.setUser(user);
+            }
             voteDAO.addVote(vote);
+            pollDAO.addGreenAndRedVotes(vote);
             return new ResponseEntity<>(vote, HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
-    @PutMapping("/vote")
-    public ResponseEntity<Vote> updateVote(@RequestBody Vote vote) {
+    @PutMapping("/vote/{id}")
+    public ResponseEntity<String> updateVote(@PathVariable Long id, @RequestBody Vote updatedVote, @RequestHeader("Authorization") String token) {
         try {
-            voteDAO.updateVote(vote);
-            return new ResponseEntity<>(vote, HttpStatus.OK);
+            User currentUser = JWS.getUserFromToken(token);
+            Vote existingVote = voteDAO.getVoteById(id);
+            if (existingVote == null) {
+                return new ResponseEntity<>("Vote not found", HttpStatus.NOT_FOUND);
+            }
+            if (currentUser == null){
+                return new ResponseEntity<>("Permission denied", HttpStatus.FORBIDDEN);
+            }
+            if (currentUser.getUserID().equals(existingVote.getUser().getUserID()) || currentUser.getIsAdmin()) {
+                voteDAO.updateVote(updatedVote);
+                return new ResponseEntity<>("Vote updated successfully!", HttpStatus.OK);
+            } else {
+                return new ResponseEntity<>("Permission denied", HttpStatus.FORBIDDEN);
+            }
         } catch (Exception e) {
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<>("Error: " + e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
@@ -59,7 +93,6 @@ public class VoteController {
                 return new ResponseEntity<>(HttpStatus.NOT_FOUND);
             }
         } catch (Exception e) {
-            // Handle or log the error
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
@@ -74,7 +107,6 @@ public class VoteController {
                 return new ResponseEntity<>(HttpStatus.NOT_FOUND);
             }
         } catch (Exception e) {
-            // Handle or log the error
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
@@ -88,22 +120,34 @@ public class VoteController {
                 return new ResponseEntity<>(HttpStatus.NOT_FOUND);
             }
         } catch (Exception e) {
-            // Handle or log the error
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
     @DeleteMapping("/vote/{id}")
-    public ResponseEntity<HttpStatus> deleteVotebyID(@PathVariable Long id) {
+    public ResponseEntity<String> deleteVoteById(@PathVariable Long id, @RequestHeader("Authorization") String token) {
         try {
-            voteDAO.deleteVoteById(id);
-            return new ResponseEntity<>(HttpStatus.OK);
+            User currentUser = JWS.getUserFromToken(token);
+            Vote existingVote = voteDAO.getVoteById(id);
+            if (existingVote == null) {
+                return new ResponseEntity<>("Vote not found", HttpStatus.NOT_FOUND);
+            }
+            if (currentUser == null){
+                return new ResponseEntity<>("Permission denied", HttpStatus.FORBIDDEN);
+            }
+            if (currentUser.getUserID().equals(existingVote.getUser().getUserID()) || currentUser.getIsAdmin()) {
+                voteDAO.deleteVoteById(id);
+                return new ResponseEntity<>("Vote deleted successfully!", HttpStatus.OK);
+            } else {
+                return new ResponseEntity<>("Permission denied", HttpStatus.FORBIDDEN);
+            }
         } catch (Exception e) {
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<>("Error: " + e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
     @DeleteMapping("/vote")
     public ResponseEntity<HttpStatus> deleteVote(@RequestBody Vote vote) {
         try {
+            pollDAO.deleteGreenAndRedVotes(vote);
             voteDAO.deleteVote(vote);
             return new ResponseEntity<>(HttpStatus.OK);
         } catch (Exception e) {

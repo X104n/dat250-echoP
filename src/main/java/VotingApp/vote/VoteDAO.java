@@ -47,10 +47,12 @@ public class VoteDAO {
         }
     }
 
+    @Transactional
     public void deleteVote(Vote vote) {
         entityManager.remove(vote);
     }
 
+    @Transactional
     public void updateVote(Vote vote) {
         Long id = vote.getVoteID();
         Vote voteToBeUpdated = getVoteById(id);
@@ -59,6 +61,6 @@ public class VoteDAO {
             voteToBeUpdated.setPoll(vote.getPoll());
             voteToBeUpdated.setUser(vote.getUser());
         }
-        entityManager.persist(vote);
+        entityManager.merge(vote);
     }
 }

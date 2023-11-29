@@ -2,6 +2,7 @@ package VotingApp.poll;
 
 import VotingApp.user.User;
 import VotingApp.vote.Vote;
+import com.fasterxml.jackson.annotation.JsonIncludeProperties;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -16,26 +17,37 @@ import java.util.Collection;
 public class Poll {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long pollID;
+    private Long id;
     private String title;
     private String question;
-    private Timestamp startDateTime;
-    private Timestamp endDateTime;
-    private Boolean isPublic;
+    private Timestamp startDate;
+    private Timestamp endDate;
+    private Boolean requireLogin;
     private String pollLink;
     private String pollCode;
+    private int redVotes;
+    private int greenVotes;
+    private Boolean isActive;
+    private Boolean isProcessed = false;
+
+
+    protected int resultGreen(){
+        return greenVotes;
+    }
+
+    protected int resultRed(){
+        return redVotes;
+    }
+
 
     @ManyToOne
-    @JoinColumn(name = "created_by_user")
+    @JoinColumn(name = "userID")
+    @JsonIncludeProperties("userID")
     private User createdBy;
 
     @OneToMany(mappedBy = "poll")
+    @JsonIncludeProperties("voteID")
     private Collection<Vote> votes;
-
-
-
-
-
 
 
 
