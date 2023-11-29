@@ -150,8 +150,19 @@ public class VoteController {
         }
     }
     @DeleteMapping("/vote")
-    public ResponseEntity<HttpStatus> deleteVote(@RequestBody Vote vote) {
+    public ResponseEntity<HttpStatus> deleteVote(@RequestBody Vote vote, @RequestHeader("Authorization") String token) {
         try {
+            User currentUser = JWS.getUserFromToken(token);
+            Vote existingVote = voteDAO.getVoteById(vote.getVoteID());
+            if (existingVote == null) {
+                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            }
+            if (currentUser == null){
+                return new ResponseEntity<>(HttpStatus.FORBIDDEN);
+            }
+            if (!(currentUser.getUserID().equals(existingVote.getUser().getUserID()) || currentUser.getIsAdmin())) {
+                return new ResponseEntity<>(HttpStatus.FORBIDDEN);
+            }
             pollDAO.deleteGreenAndRedVotes(vote);
             voteDAO.deleteVote(vote);
             return new ResponseEntity<>(HttpStatus.OK);
