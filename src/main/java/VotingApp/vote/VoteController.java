@@ -39,7 +39,7 @@ public class VoteController {
             }
             else {
                 for (Vote v : voteDAO.getVotesByPoll(pollDAO.getPollById(vote.getPoll().getId()))) {
-                    if (v.getUser().getUserID().equals(user.getUserID())) {
+                    if (!v.getUser().equals(null) && v.getUser().getUserID().equals(user.getUserID())) {
                         return new ResponseEntity<>(HttpStatus.FORBIDDEN);
                     }
                 }
