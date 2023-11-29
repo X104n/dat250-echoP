@@ -90,7 +90,7 @@ public class PollDAO {
         }
     }
 
-
+    @Transactional
     public void addGreenAndRedVotes(Vote vote){
         try{
             Poll poll = getPollById(vote.getPoll().getId());
@@ -107,7 +107,7 @@ public class PollDAO {
         }
     }
 
-
+    @Transactional
     public void deleteGreenAndRedVotes(Vote vote){
         try{
             Poll poll = vote.getPoll();
