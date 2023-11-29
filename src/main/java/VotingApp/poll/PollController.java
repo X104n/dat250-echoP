@@ -5,12 +5,15 @@ import VotingApp.security.JWS;
 import VotingApp.user.UserDAO;
 import VotingApp.vote.Vote;
 import VotingApp.user.User;
+import com.fasterxml.jackson.databind.util.JSONPObject;
 import org.apache.tomcat.util.json.JSONParser;
 import org.h2.util.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -30,7 +33,8 @@ public class PollController {
     public ResponseEntity<Poll> addPoll(@RequestBody Poll poll, @RequestHeader("Authorization") String token) {
         try {
             User user = JWS.getUserFromToken(token);
-            poll.setCreatedBy(user);;
+            poll.setCreatedBy(user);
+            ;
             pollDAO.addPoll(poll);
             return new ResponseEntity<>(poll, HttpStatus.OK);
         } catch (Exception e) {
@@ -107,5 +111,24 @@ public class PollController {
         }
     }
 
+    @GetMapping("/iot/{id}")
+    public ResponseEntity<?> getGreenAndRedVotes(@PathVariable Long id) {
+        try {
+            Poll poll = pollDAO.getPollById(id);
+            if (poll != null) {
+                List<Integer> votes = new ArrayList<>();
+                votes.add(poll.getGreenVotes());
+                votes.add(poll.getRedVotes());
+                return ResponseEntity.ok(votes);
+            } else {
+                return ResponseEntity.notFound().build();
+            }
+        }
+        catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body("Error: " + e.getMessage());
+        }
+
+    }
 }
 
