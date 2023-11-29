@@ -95,9 +95,11 @@ public class PollDAO {
         try{
             Poll poll = getPollById(vote.getPoll().getId());
             if(vote.getChoice().equals(Boolean.TRUE)){
-                poll.setGreenVotes(poll.getGreenVotes()+1);
+                int greenVotes = poll.getGreenVotes();
+                poll.setGreenVotes(greenVotes+1);
             }else if(vote.getChoice().equals(Boolean.FALSE)){
-                poll.setRedVotes(poll.getRedVotes()+1);
+                int redVotes = poll.getRedVotes();
+                poll.setRedVotes(redVotes+1);
             }
             entityManager.merge(poll);
         }catch(Exception e){
