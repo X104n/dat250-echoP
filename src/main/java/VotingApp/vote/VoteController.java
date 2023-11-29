@@ -37,6 +37,11 @@ public class VoteController {
                     return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
             }
             else {
+                for (Vote v : voteDAO.getVotesByPoll(vote.getPoll())) {
+                    if (v.getUser().getUserID().equals(user.getUserID())) {
+                        return new ResponseEntity<>(HttpStatus.FORBIDDEN);
+                    }
+                }
                 vote.setUser(user);
             }
             voteDAO.addVote(vote);
