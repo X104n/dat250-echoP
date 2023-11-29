@@ -21,8 +21,6 @@ public class User {
     private String name;
     private String email;
     private String password;
-    private java.sql.Timestamp createdDate;
-    private java.sql.Timestamp lastLoginDate;
     private Boolean isAdmin;
 
     @OneToMany(mappedBy = "createdBy")

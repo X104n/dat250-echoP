@@ -32,8 +32,9 @@ public class VoteController {
         try {
 
             User user = JWS.getUserFromToken(token);
+            Poll poll = pollDAO.getPollById(vote.getPoll().getId());
             if (user == null) {
-                if(vote.getPoll().getRequireLogin())
+                if(poll.getRequireLogin())
                     return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
             }
             else {
