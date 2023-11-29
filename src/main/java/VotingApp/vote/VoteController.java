@@ -60,7 +60,7 @@ public class VoteController {
             Poll poll = pollDAO.getPollById(updatedVote.getPoll().getId());
             Vote existingVote = null;
             for (Vote v : poll.getVotes()) {
-                if (v.getUser().getUserID().equals(currentUser.getUserID())) {
+                if (!v.getUser().equals(null) && v.getUser().getUserID().equals(currentUser.getUserID())) {
                     existingVote = v;
                 }
             }
