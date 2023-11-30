@@ -82,6 +82,9 @@ public class PollDAO {
     @Transactional
     public void deletePoll(Poll poll) {
         try {
+            for (Vote vote : poll.getVotes()) {
+                entityManager.remove(vote);
+            }
             entityManager.remove(poll);
         } catch (Exception e) {
             System.out.println(e);
@@ -91,11 +94,13 @@ public class PollDAO {
     @Transactional
     public void addGreenAndRedVotes(Vote vote){
         try{
-            Poll poll = vote.getPoll();
+            Poll poll = getPollById(vote.getPoll().getId());
             if(vote.getChoice().equals(Boolean.TRUE)){
-                poll.setGreenVotes(poll.getGreenVotes()+1);
+                int greenVotes = poll.getGreenVotes();
+                poll.setGreenVotes(greenVotes+1);
             }else if(vote.getChoice().equals(Boolean.FALSE)){
-                poll.setRedVotes(poll.getRedVotes()+1);
+                int redVotes = poll.getRedVotes();
+                poll.setRedVotes(redVotes+1);
             }
             entityManager.merge(poll);
         }catch(Exception e){
@@ -126,6 +131,21 @@ public class PollDAO {
                 poll.setGreenVotes(poll.getGreenVotes()+1);
             }else if(choice.equals(Boolean.FALSE)){
                 poll.setRedVotes(poll.getRedVotes()+1);
+            }
+            entityManager.merge(poll);
+        }catch(Exception e){
+            System.out.println(e);
+        }
+    }
+
+    @Transactional
+    public void deleteGreenAndRedVotes(Long id, Boolean choice){
+        try{
+            Poll poll = getPollById(id);
+            if(choice){
+                poll.setGreenVotes(poll.getGreenVotes()-1);
+            }else if(choice.equals(Boolean.FALSE)){
+                poll.setRedVotes(poll.getRedVotes()-1);
             }
             entityManager.merge(poll);
         }catch(Exception e){
