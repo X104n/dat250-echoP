@@ -32,11 +32,17 @@ public class VoteController {
         try {
 
             User user = JWS.getUserFromToken(token);
+            Poll poll = pollDAO.getPollById(vote.getPoll().getId());
             if (user == null) {
-                if(vote.getPoll().getRequireLogin())
+                if(poll.getRequireLogin())
                     return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
             }
             else {
+                for (Vote v : voteDAO.getVotesByPoll(pollDAO.getPollById(vote.getPoll().getId()))) {
+                    if (v.getUser() != null && v.getUser().getUserID().equals(user.getUserID())) {
+                        return new ResponseEntity<>(HttpStatus.FORBIDDEN);
+                    }
+                }
                 vote.setUser(user);
             }
             voteDAO.addVote(vote);
@@ -47,19 +53,25 @@ public class VoteController {
         }
     }
 
-    @PutMapping("/vote/{id}")
-    public ResponseEntity<String> updateVote(@PathVariable Long id, @RequestBody Vote updatedVote, @RequestHeader("Authorization") String token) {
+    @PutMapping("/vote")
+    public ResponseEntity<String> updateVote(@RequestBody Vote updatedVote, @RequestHeader("Authorization") String token) {//vote contains poll and choice
         try {
             User currentUser = JWS.getUserFromToken(token);
-            Vote existingVote = voteDAO.getVoteById(id);
+            Poll poll = pollDAO.getPollById(updatedVote.getPoll().getId());
+            Vote existingVote = null;
+            for (Vote v : poll.getVotes()) {
+                if (v.getUser() != null && v.getUser().getUserID().equals(currentUser.getUserID())) {
+                    existingVote = v;
+                }
+            }
             if (existingVote == null) {
                 return new ResponseEntity<>("Vote not found", HttpStatus.NOT_FOUND);
             }
-            if (currentUser == null){
+            if (currentUser == null) {
                 return new ResponseEntity<>("Permission denied", HttpStatus.FORBIDDEN);
             }
             if (currentUser.getUserID().equals(existingVote.getUser().getUserID()) || currentUser.getIsAdmin()) {
-                voteDAO.updateVote(updatedVote);
+                voteDAO.updateVote(existingVote.getVoteID(), updatedVote.getChoice());
                 return new ResponseEntity<>("Vote updated successfully!", HttpStatus.OK);
             } else {
                 return new ResponseEntity<>("Permission denied", HttpStatus.FORBIDDEN);
@@ -145,8 +157,19 @@ public class VoteController {
         }
     }
     @DeleteMapping("/vote")
-    public ResponseEntity<HttpStatus> deleteVote(@RequestBody Vote vote) {
+    public ResponseEntity<HttpStatus> deleteVote(@RequestBody Vote vote, @RequestHeader("Authorization") String token) {
         try {
+            User currentUser = JWS.getUserFromToken(token);
+            Vote existingVote = voteDAO.getVoteById(vote.getVoteID());
+            if (existingVote == null) {
+                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            }
+            if (currentUser == null){
+                return new ResponseEntity<>(HttpStatus.FORBIDDEN);
+            }
+            if (!(currentUser.getUserID().equals(existingVote.getUser().getUserID()) || currentUser.getIsAdmin())) {
+                return new ResponseEntity<>(HttpStatus.FORBIDDEN);
+            }
             pollDAO.deleteGreenAndRedVotes(vote);
             voteDAO.deleteVote(vote);
             return new ResponseEntity<>(HttpStatus.OK);

@@ -21,8 +21,6 @@ public class User {
     private String name;
     private String email;
     private String password;
-    private java.sql.Timestamp createdDate;
-    private java.sql.Timestamp lastLoginDate;
     private Boolean isAdmin;
 
     @OneToMany(mappedBy = "createdBy")
@@ -30,6 +28,6 @@ public class User {
     private Collection<Poll> polls = new ArrayList<>();
 
     @OneToMany(mappedBy = "user")
-    @JsonIncludeProperties("voteID")
+    @JsonIncludeProperties({"voteID","poll"})
     private Collection<Vote> votes = new ArrayList<>();
 }
