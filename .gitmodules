@@ -1,3 +1,6 @@
 [submodule "FeedApp"]
 	path = FeedApp
 	url = https://github.com/X104n/FeedApp
+[submodule "IotDevice"]
+	path = IotDevice
+	url = https://github.com/How2sleep/IotDevice
